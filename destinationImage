@@ -1,0 +1,26 @@
+function destinationImage(name) {
+    const images = {
+
+        // Mumbai
+        "Mumbai": "images/taj-hotel-mumbai.jpg",
+
+        // Pune
+        "Pune": "images/dagdusheth-ganpati-pune.jpg",
+
+        // Nashik
+        "Nashik": "images/trimbakeshwar-nashik.jpg",
+
+        // Thane
+        "Thane": "images/upvan-lake-thane.jpg",
+
+        // Chhatrapati Sambhajinagar
+        "Chhatrapati Sambhajinagar":
+            "images/bibi-ka-maqbara-chhatrapati-sambhajinagar.jpg",
+
+        // Solapur
+        "Solapur": "images/siddheshwar-temple-solapur.jpg"
+
+    };
+
+    return images[name] || "images/default.jpg";
+}

@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "server": "127.0.0.1",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "TravelGrid Mysql",
+            "database": "travelgrid",
+            "username": "travelgrid_user"
+        }
+    ]
+}

@@ -1,0 +1,1934 @@
+/* =========================================================
+   TRAVELGRID - HOTELS PAGE
+   Complete Hotels CSS
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f9fc;
+    color: #183b4d;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    width: 100%;
+    height: 70px;
+
+    background: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    border-top: 3px solid #303030;
+    border-bottom: 1px solid #e3edf1;
+
+    position: relative;
+    z-index: 1000;
+}
+
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+
+    color: #087fa8;
+
+    text-decoration: none;
+}
+
+
+.logo span {
+    color: #12a58d;
+}
+
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+
+.nav-links a {
+    text-decoration: none;
+
+    color: #172f40;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.25s ease;
+}
+
+
+.nav-links a:hover {
+    color: #07958f;
+}
+
+
+.nav-links a.active {
+    color: #078c91;
+}
+
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
+.hero-section {
+    min-height: 255px;
+
+    padding: 55px 20px 80px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(135deg,
+            #e4f8fd 0%,
+            #eafbf7 100%);
+}
+
+
+.hero-section h1 {
+    font-size: 42px;
+
+    color: #075f8c;
+
+    margin-bottom: 12px;
+
+    font-weight: 800;
+}
+
+
+.hero-section p {
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    color: #526f7e;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   SEARCH SECTION
+========================================================= */
+
+.hotel-search-container {
+    width: 100%;
+
+    margin-top: -45px;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+
+.hotel-search-box {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 22px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 70, 100, 0.12);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   CITY DROPDOWN
+========================================================= */
+
+#cityFilter {
+    flex: 1;
+
+    width: 100%;
+    height: 52px;
+
+    padding: 0 18px;
+
+    background: #ffffff;
+
+    border: 2px solid #d8e8ee;
+
+    border-radius: 12px;
+
+    color: #24495b;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+
+#cityFilter:hover {
+    border-color: #10a096;
+}
+
+
+#cityFilter:focus {
+    border-color: #0a91a2;
+
+    box-shadow:
+        0 0 0 4px rgba(10, 145, 162, 0.10);
+}
+
+
+#cityFilter option {
+    background: #ffffff;
+
+    color: #183b4d;
+
+    padding: 10px;
+}
+
+
+/* =========================================================
+   SEARCH BUTTON
+========================================================= */
+
+#searchHotelBtn {
+    height: 52px;
+
+    min-width: 230px;
+
+    padding: 0 28px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(135deg,
+            #087fa8,
+            #12a58d);
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    box-shadow:
+        0 8px 18px rgba(8, 127, 168, 0.18);
+}
+
+
+#searchHotelBtn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(8, 127, 168, 0.25);
+}
+
+
+#searchHotelBtn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   SEARCH TITLE
+========================================================= */
+
+.search-heading {
+    text-align: center;
+
+    margin: 38px auto 25px;
+}
+
+
+.search-heading h2 {
+    color: #075f8c;
+
+    font-size: 30px;
+
+    margin-bottom: 7px;
+}
+
+
+.search-heading p {
+    color: #708692;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   HOTELS SECTION
+========================================================= */
+
+.hotels-section {
+    width: 100%;
+
+    padding: 0 20px 70px;
+}
+
+
+#hotelList {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+/* =========================================================
+   HOTEL CARD
+========================================================= */
+
+.hotel-card {
+    width: 100%;
+
+    min-height: 390px;
+
+    padding: 21px;
+
+    background: #ffffff;
+
+    border: 1px solid #e3edf1;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 7px 24px rgba(0, 60, 90, 0.07);
+
+    display: flex;
+
+    flex-direction: column;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.hotel-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #cfe7eb;
+
+    box-shadow:
+        0 15px 35px rgba(0, 70, 100, 0.13);
+}
+
+
+/* =========================================================
+   HOTEL CARD TOP
+========================================================= */
+
+.hotel-card-top {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding-bottom: 17px;
+
+    border-bottom: 1px solid #edf2f4;
+}
+
+
+.hotel-icon {
+    width: 52px;
+    height: 52px;
+
+    min-width: 52px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(135deg,
+            #e1f7fb,
+            #e4f8f1);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+
+.hotel-title {
+    min-width: 0;
+
+    flex: 1;
+}
+
+
+.hotel-title h3 {
+    margin: 0 0 5px;
+
+    color: #16465c;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    word-break: break-word;
+}
+
+
+.hotel-title span {
+    display: block;
+
+    color: #718894;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   HOTEL INFORMATION
+========================================================= */
+
+.hotel-info {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+
+    padding: 19px 0;
+
+    flex: 1;
+}
+
+
+.info-item {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+.info-item.full-width {
+    grid-column: 1 / -1;
+}
+
+
+.info-label {
+    color: #91a1aa;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+}
+
+
+.info-value {
+    color: #385969;
+
+    font-size: 13px;
+
+    line-height: 1.45;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   CARD BOTTOM
+========================================================= */
+
+.hotel-card-bottom {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid #edf2f4;
+}
+
+
+.hotel-price {
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+
+.price-label {
+    color: #91a1aa;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    margin-bottom: 2px;
+}
+
+
+.hotel-price strong {
+    color: #e67818;
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+
+.hotel-price small {
+    color: #81939d;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   BOOK NOW BUTTON
+========================================================= */
+
+.book-now-btn {
+    padding: 11px 19px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(135deg,
+            #087fa8,
+            #129c91);
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+
+.book-now-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 16px rgba(8, 127, 168, 0.22);
+}
+
+
+.book-now-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   WELCOME BOX
+========================================================= */
+
+.hotel-welcome-box {
+    grid-column: 1 / -1;
+
+    max-width: 850px;
+
+    margin: 5px auto 0;
+
+    width: 100%;
+
+    padding: 45px 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5edf1;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(0, 60, 90, 0.07);
+}
+
+
+.welcome-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(135deg,
+            #e2f7fb,
+            #e5f8f2);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 32px;
+}
+
+
+.hotel-welcome-box h3 {
+    color: #075f8c;
+
+    font-size: 23px;
+
+    margin-bottom: 7px;
+}
+
+
+.hotel-welcome-box p {
+    color: #758b96;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   NO HOTEL BOX
+========================================================= */
+
+.no-hotels-box {
+    grid-column: 1 / -1;
+
+    max-width: 850px;
+
+    width: 100%;
+
+    margin: 5px auto;
+
+    padding: 50px 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5edf1;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(0, 60, 90, 0.07);
+}
+
+
+.no-hotels-icon {
+    font-size: 45px;
+
+    margin-bottom: 10px;
+}
+
+
+.no-hotels-box h3 {
+    color: #16465c;
+
+    font-size: 22px;
+
+    margin-bottom: 7px;
+}
+
+
+.no-hotels-box p {
+    color: #7a8e98;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   BOOKING FORM
+========================================================= */
+
+#bookingForm {
+    display: none;
+
+    max-width: 900px;
+
+    margin: 30px auto 60px;
+
+    padding: 28px;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    border: 1px solid #e3edf1;
+
+    box-shadow:
+        0 10px 30px rgba(0, 60, 90, 0.09);
+}
+
+
+#bookingForm h2 {
+    color: #075f8c;
+
+    margin-bottom: 20px;
+}
+
+
+/* Form fields */
+
+#bookingForm input,
+#bookingForm select {
+
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 14px;
+
+    border: 1px solid #d6e4e9;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    color: #284b5b;
+
+    background: #ffffff;
+
+    transition: 0.25s;
+}
+
+
+#bookingForm input:focus,
+#bookingForm select:focus {
+
+    border-color: #0b97a0;
+
+    box-shadow:
+        0 0 0 3px rgba(11, 151, 160, 0.09);
+}
+
+
+#bookingForm label {
+
+    display: block;
+
+    color: #42606d;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 6px;
+}
+
+
+/* =========================================================
+   BOOKING BUTTONS
+========================================================= */
+
+.confirm-booking-btn {
+
+    padding: 12px 24px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(135deg,
+            #087fa8,
+            #12a58d);
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.confirm-booking-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(8, 127, 168, 0.20);
+}
+
+
+/* =========================================================
+   BOOKING MESSAGE
+========================================================= */
+
+.booking-message {
+
+    padding: 15px;
+
+    margin-top: 15px;
+
+    border-radius: 10px;
+
+    background: #eef9f7;
+
+    color: #16756d;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   PAGE FOOTER
+========================================================= */
+
+footer {
+
+    width: 100%;
+
+    padding: 25px 20px;
+
+    text-align: center;
+
+    background: #123e52;
+
+    color: #dbeaf0;
+
+    font-size: 13px;
+}
+
+
+footer p {
+    margin: 0;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .navbar {
+        padding: 0 4%;
+    }
+
+
+    #hotelList {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        max-width: 900px;
+
+    }
+
+
+    .hotel-search-box {
+
+        margin-left: 25px;
+
+        margin-right: 25px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+
+        height: auto;
+
+        min-height: 65px;
+
+        padding: 14px 20px;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+    }
+
+
+    .logo {
+        font-size: 25px;
+    }
+
+
+    .nav-links {
+
+        gap: 18px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+    }
+
+
+    .hero-section {
+
+        padding: 40px 18px 70px;
+
+    }
+
+
+    .hero-section h1 {
+
+        font-size: 32px;
+
+    }
+
+
+    .hero-section p {
+
+        font-size: 14px;
+
+    }
+
+
+    .hotel-search-container {
+
+        margin-top: -35px;
+
+    }
+
+
+    .hotel-search-box {
+
+        flex-direction: column;
+
+        margin-left: 15px;
+
+        margin-right: 15px;
+
+        padding: 17px;
+
+        border-radius: 16px;
+
+    }
+
+
+    #cityFilter {
+
+        width: 100%;
+
+    }
+
+
+    #searchHotelBtn {
+
+        width: 100%;
+
+        min-width: 0;
+
+    }
+
+
+    .search-heading {
+
+        margin-top: 30px;
+
+    }
+
+
+    .search-heading h2 {
+
+        font-size: 25px;
+
+    }
+
+
+    .hotels-section {
+
+        padding-left: 15px;
+
+        padding-right: 15px;
+
+    }
+
+
+    #hotelList {
+
+        grid-template-columns: 1fr;
+
+        max-width: 550px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .nav-links {
+
+        gap: 12px;
+
+    }
+
+
+    .nav-links a {
+
+        font-size: 13px;
+
+    }
+
+
+    .hero-section h1 {
+
+        font-size: 28px;
+
+    }
+
+
+    .hotel-card {
+
+        padding: 17px;
+
+        min-height: auto;
+
+    }
+
+
+    .hotel-info {
+
+        grid-template-columns: 1fr;
+
+        gap: 13px;
+
+    }
+
+
+    .info-item.full-width {
+
+        grid-column: auto;
+
+    }
+
+
+    .hotel-card-bottom {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .hotel-price {
+
+        align-items: center;
+
+    }
+
+
+    .book-now-btn {
+
+        width: 100%;
+
+        padding: 12px;
+
+    }
+
+
+    .hotel-welcome-box {
+
+        padding: 35px 18px;
+
+    }
+
+}
+
+/* =========================================
+   HOTEL BOOKING CONFIRMATION
+========================================= */
+
+.hotel-confirmation-section {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.hotel-confirmation-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.10);
+    border: 1px solid #e2e8f0;
+}
+
+.confirmation-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #e8f8ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.hotel-confirmation-card h2 {
+    text-align: center;
+    margin: 0;
+    color: #07526b;
+    font-size: 27px;
+}
+
+.confirmation-message {
+    text-align: center;
+    color: #667085;
+    margin: 8px 0 25px;
+}
+
+.confirmation-details {
+    border: 1px solid #e3e8ee;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.confirmation-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 18px;
+    border-bottom: 1px solid #edf0f3;
+}
+
+.confirmation-row span {
+    color: #667085;
+}
+
+.confirmation-row strong {
+    color: #1f2937;
+    text-align: right;
+}
+
+.confirmation-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+    background: #f0f8fb;
+    color: #07526b;
+    font-size: 18px;
+}
+
+.confirmation-total strong {
+    font-size: 22px;
+}
+
+.confirmation-status {
+    margin: 15px;
+    padding: 13px;
+    text-align: center;
+    border-radius: 10px;
+    background: #eaf8ef;
+    color: #18733d;
+    font-weight: 700;
+}
+
+.confirmation-done-btn {
+    display: block;
+    margin: 25px auto 0;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 9px;
+    background: #07526b;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.confirmation-done-btn:hover {
+    background: #053f51;
+}
+
+
+@media (max-width: 600px) {
+
+    .hotel-confirmation-card {
+        padding: 20px;
+    }
+
+    .confirmation-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .confirmation-row strong {
+        text-align: left;
+    }
+
+    .confirmation-total {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 7px;
+    }
+}
+
+/* =====================================================
+   FINAL TRIP SUMMARY
+===================================================== */
+
+.final-trip-summary {
+    width: 100%;
+    padding: 60px 20px;
+    margin-top: 50px;
+    background: linear-gradient(135deg, #f5f7ff, #eef5ff);
+}
+
+.final-summary-container {
+    max-width: 850px;
+    margin: auto;
+}
+
+
+/* TITLE */
+
+.final-summary-title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.summary-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    font-size: 32px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.final-summary-title h2 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.final-summary-title p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 15px;
+}
+
+
+/* SUMMARY CARD */
+
+.summary-card {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.10);
+    border: 1px solid #e8e8e8;
+}
+
+
+/* ROW */
+
+.summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 5px;
+    font-size: 18px;
+}
+
+.summary-row>div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.summary-row strong {
+    font-size: 20px;
+}
+
+.row-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: #f1f5ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+
+/* DIVIDER */
+
+.summary-divider {
+    height: 1px;
+    background: #e5e5e5;
+    margin: 10px 0 20px;
+}
+
+
+/* TOTAL */
+
+.grand-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 5px 5px;
+}
+
+.grand-total span {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.grand-total strong {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+
+/* PAYMENT CARD */
+
+.payment-card {
+    margin-top: 25px;
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.10);
+}
+
+.payment-card h3 {
+    margin-top: 0;
+    margin-bottom: 22px;
+    font-size: 22px;
+}
+
+
+/* PAYMENT BUTTONS */
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.payment-methods button {
+    padding: 15px 10px;
+    border: 1px solid #ddd;
+    background: #ffffff;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.payment-methods button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.payment-methods button.active {
+    border: 2px solid #2563eb;
+    background: #eff6ff;
+}
+
+
+/* AMOUNT */
+
+.pay-amount {
+    margin-top: 25px;
+    padding: 18px;
+    background: #f7f8fa;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.pay-amount strong {
+    font-size: 23px;
+}
+
+
+/* PAY BUTTON */
+
+.complete-payment-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 17px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 700;
+    background: #111827;
+    color: #ffffff;
+    transition: 0.2s;
+}
+
+.complete-payment-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* SUCCESS */
+
+.final-payment-success {
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 18px;
+    background: #ffffff;
+    border: 2px solid #22c55e;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.final-success-card h2 {
+    margin-top: 0;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+    .final-trip-summary {
+        padding: 40px 15px;
+    }
+
+    .summary-card,
+    .payment-card {
+        padding: 20px;
+    }
+
+    .payment-methods {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .final-summary-title h2 {
+        font-size: 24px;
+    }
+
+    .grand-total span {
+        font-size: 18px;
+    }
+
+    .grand-total strong {
+        font-size: 25px;
+    }
+}
+
+.payment-step {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #f8f9fa;
+}
+
+.payment-step h4 {
+    margin-bottom: 15px;
+}
+
+.payment-step label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.payment-step input,
+.payment-step select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.complete-payment-btn {
+    margin-top: 18px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.payment-success {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+.final-bill-card {
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.bill-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+}
+
+.bill-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 15px 0;
+}
+
+/* =====================================================
+   FINAL TRIP ESTIMATE
+   ===================================================== */
+
+.final-trip-summary {
+    display: none;
+    width: 100%;
+    padding: 60px 20px 80px;
+    background: #f4f8fc;
+    box-sizing: border-box;
+}
+
+.final-summary-container {
+    width: 90%;
+    max-width: 950px;
+    margin: auto;
+}
+
+
+/* ===============================
+   SUMMARY HEADER
+   =============================== */
+
+.final-summary-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.summary-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e7f8f7, #dff5ff);
+    border-radius: 16px;
+    font-size: 30px;
+}
+
+.final-summary-header h2 {
+    margin: 0;
+    color: #063b5c;
+    font-size: 30px;
+}
+
+.final-summary-header p {
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 15px;
+}
+
+
+/* ===============================
+   ESTIMATE CARD
+   =============================== */
+
+.estimate-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 10px 25px;
+    box-shadow: 0 10px 30px rgba(0, 60, 100, 0.10);
+    border: 1px solid #e2edf4;
+    margin-bottom: 30px;
+}
+
+.estimate-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 19px 5px;
+    font-size: 17px;
+    color: #183b50;
+}
+
+.estimate-row strong {
+    color: #064b70;
+    font-size: 18px;
+}
+
+.estimate-line {
+    height: 1px;
+    background: #dce6ec;
+    margin: 3px 0;
+}
+
+.estimate-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 5px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #073b59;
+}
+
+.estimate-total strong {
+    color: #008b75;
+    font-size: 25px;
+}
+
+
+/* =====================================================
+   FINAL PAYMENT BOX
+   ===================================================== */
+
+.final-payment-box {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 35px rgba(0, 60, 100, 0.12);
+    border: 1px solid #dcebf2;
+}
+
+.payment-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.payment-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: #e8f7fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.payment-heading h2 {
+    margin: 0;
+    color: #073b59;
+    font-size: 25px;
+}
+
+.payment-heading p {
+    margin: 5px 0 0;
+    color: #718096;
+    font-size: 14px;
+}
+
+
+/* ===============================
+   AMOUNT TO PAY
+   =============================== */
+
+.payment-amount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f0f8fb;
+    border-radius: 12px;
+    padding: 17px 20px;
+    margin-bottom: 22px;
+}
+
+.payment-amount span {
+    color: #31566a;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.payment-amount strong {
+    color: #008b75;
+    font-size: 24px;
+}
+
+
+/* ===============================
+   PAYMENT BUTTONS
+   =============================== */
+
+.payment-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.payment-buttons button {
+    border: 1px solid #d6e4eb;
+    background: #ffffff;
+    color: #17435b;
+    padding: 14px 10px;
+    border-radius: 11px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+.payment-buttons button:hover {
+    background: #087f8c;
+    color: white;
+    border-color: #087f8c;
+    transform: translateY(-2px);
+}
+
+
+/* ===============================
+   PAYMENT DETAILS
+   =============================== */
+
+.payment-details {
+    margin-top: 20px;
+}
+
+.payment-input-box {
+    background: #f8fbfd;
+    border: 1px solid #dce9ef;
+    border-radius: 15px;
+    padding: 24px;
+}
+
+.payment-input-box h4 {
+    margin: 0 0 18px;
+    color: #073b59;
+    font-size: 19px;
+}
+
+.payment-input-box input,
+.payment-input-box select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+    margin-bottom: 12px;
+    border: 1px solid #cbdce5;
+    border-radius: 9px;
+    background: #ffffff;
+    font-size: 15px;
+    outline: none;
+}
+
+.payment-input-box input:focus,
+.payment-input-box select:focus {
+    border-color: #078b97;
+    box-shadow: 0 0 0 3px rgba(7, 139, 151, 0.10);
+}
+
+.payment-input-box button {
+    width: 100%;
+    border: none;
+    padding: 14px;
+    margin-top: 5px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #008b8b, #087f8c);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.payment-input-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 120, 130, 0.25);
+}
+
+
+/* =====================================================
+   FINAL BILL
+   ===================================================== */
+
+.final-payment-bill {
+    margin-top: 30px;
+}
+
+.final-success-box {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 35px rgba(0, 60, 100, 0.12);
+    border: 1px solid #dcebf2;
+}
+
+.final-success-box h2 {
+    color: #087f5b;
+    margin-top: 0;
+}
+
+.final-success-box h3 {
+    color: #073b59;
+}
+
+.final-success-box p {
+    color: #415a68;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.final-success-box hr {
+    border: none;
+    border-top: 1px solid #dce6ec;
+    margin: 20px 0;
+}
+
+.final-success-box button {
+    margin-top: 20px;
+    padding: 13px 35px;
+    border: none;
+    border-radius: 10px;
+    background: #087f5b;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.final-success-box button:hover {
+    background: #066b4c;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+    .final-trip-summary {
+        padding: 40px 12px 60px;
+    }
+
+    .final-summary-container {
+        width: 96%;
+    }
+
+    .final-summary-header h2 {
+        font-size: 24px;
+    }
+
+    .estimate-row {
+        font-size: 15px;
+    }
+
+    .estimate-total {
+        font-size: 17px;
+    }
+
+    .estimate-total strong {
+        font-size: 21px;
+    }
+
+    .final-payment-box {
+        padding: 20px;
+    }
+
+    .payment-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}

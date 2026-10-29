@@ -1,0 +1,868 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f5f5f5;
+}
+
+/* Header */
+
+header {
+    background: #0d6efd;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+}
+
+.logo h2 {
+    font-size: 30px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 25px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    transition: .3s;
+}
+
+nav ul li a:hover {
+    color: yellow;
+}
+
+/* Hero */
+
+.hero {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)),
+        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 55px;
+}
+
+.hero p {
+    margin: 20px 0;
+    font-size: 20px;
+}
+
+.btn {
+    display: inline-block;
+    background: #ff9800;
+    color: white;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: #ff6f00;
+}
+
+/* Features */
+
+.features {
+    padding: 70px 8%;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .15);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card i {
+    font-size: 45px;
+    color: #0d6efd;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+}
+
+/* Footer */
+
+footer {
+    background: #0d6efd;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* Responsive */
+
+@media(max-width:768px) {
+
+    header {
+        flex-direction: column;
+    }
+
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+}
+
+/* =========================================
+   HOTEL CARD LINK
+========================================= */
+
+.hotel-card {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.hotel-card:hover {
+    transform: translateY(-8px);
+}
+
+.hotel-card h3,
+.hotel-card p {
+    color: inherit;
+}
+
+/* =========================
+   BACK TO HOME BUTTON
+========================= */
+
+.back-home-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+
+    min-height: 52px;
+    padding: 14px 24px;
+
+    background: white;
+    color: #1d4ed8;
+
+    border: 2px solid #2563eb;
+    border-radius: 12px;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+
+    transition: 0.2s;
+}
+
+.back-home-btn:hover {
+    background: #2563eb;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* ================= AVAILABLE HOTELS ================= */
+
+.available-hotels {
+    width: 90%;
+    max-width: 1200px;
+    margin: 45px auto 70px;
+}
+
+.hotels-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.hotels-title>span {
+    font-size: 45px;
+}
+
+.hotels-title h2 {
+    margin: 0;
+    font-size: 30px;
+    color: #123b7a;
+}
+
+.hotels-title p {
+    margin: 5px 0 0;
+    color: #64748b;
+    font-size: 15px;
+}
+
+
+/* HOTEL GRID */
+
+.hotel-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+
+/* HOTEL CARD */
+
+.hotel-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #dbe7f5;
+    box-shadow: 0 8px 25px rgba(30, 64, 175, 0.10);
+    transition: 0.3s ease;
+}
+
+.hotel-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(30, 64, 175, 0.18);
+}
+
+
+/* HOTEL IMAGE AREA */
+
+.hotel-image {
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 65px;
+}
+
+
+/* Different attractive backgrounds */
+
+.hotel-img-1 {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+}
+
+.hotel-img-2 {
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+}
+
+.hotel-img-3 {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+}
+
+.hotel-img-4 {
+    background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+}
+
+.hotel-img-5 {
+    background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+}
+
+.hotel-img-6 {
+    background: linear-gradient(135deg, #cffafe, #a5f3fc);
+}
+
+
+/* HOTEL CONTENT */
+
+.hotel-content {
+    padding: 20px;
+}
+
+.hotel-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #e0edff;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.hotel-content h3 {
+    margin: 12px 0 8px;
+    color: #102a56;
+    font-size: 20px;
+}
+
+.location {
+    margin: 0 0 10px;
+    color: #475569;
+    font-size: 14px;
+}
+
+.hotel-details {
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+
+/* BOTTOM */
+
+.hotel-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.price {
+    font-size: 21px;
+    font-weight: bold;
+    color: #123b7a;
+}
+
+.hotel-bottom small {
+    color: #64748b;
+}
+
+
+/* BOOK NOW */
+
+.book-now-btn {
+    border: none;
+    padding: 11px 16px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.book-now-btn:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    transform: scale(1.04);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .hotel-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .hotel-list {
+        grid-template-columns: 1fr;
+    }
+
+    .hotels-title h2 {
+        font-size: 24px;
+    }
+
+}
+
+/* =========================================
+   TRAVELGRID FEATURE CARDS
+========================================= */
+
+.google-maps-card,
+.hotel-booking-card,
+.transport-card,
+.emergency-card {
+
+    text-decoration: none;
+    color: inherit;
+
+    cursor: pointer;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition: all 0.3s ease;
+}
+
+
+/* ICON */
+
+.google-maps-card i,
+.hotel-booking-card i,
+.transport-card i,
+.emergency-card i {
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+
+    transition: 0.3s ease;
+}
+
+
+/* HEADING */
+
+.google-maps-card h3,
+.hotel-booking-card h3,
+.transport-card h3,
+.emergency-card h3 {
+
+    font-size: 21px;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* DESCRIPTION */
+
+.google-maps-card p,
+.hotel-booking-card p,
+.transport-card p,
+.emergency-card p {
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* LINK TEXT */
+
+.feature-link {
+
+    display: inline-block;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin-top: 5px;
+
+    transition: 0.3s ease;
+
+}
+
+
+/* HOVER */
+
+.google-maps-card:hover,
+.hotel-booking-card:hover,
+.transport-card:hover,
+.emergency-card:hover {
+
+    transform: translateY(-8px);
+
+}
+
+
+/* LINK ANIMATION */
+
+.google-maps-card:hover .feature-link,
+.hotel-booking-card:hover .feature-link,
+.transport-card:hover .feature-link,
+.emergency-card:hover .feature-link {
+
+    transform: translateX(6px);
+
+}
+
+
+/* ICON ANIMATION */
+
+.google-maps-card:hover i,
+.hotel-booking-card:hover i,
+.transport-card:hover i,
+.emergency-card:hover i {
+
+    transform: scale(1.1);
+
+}
+
+/* =========================================
+   TRANSPORT FEATURE CARD
+========================================= */
+
+.transport-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.transport-card i {
+    font-size: 42px;
+    margin-bottom: 15px;
+    transition: 0.3s ease;
+}
+
+.transport-card h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.transport-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.transport-link {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.transport-card:hover {
+    transform: translateY(-8px);
+}
+
+.transport-card:hover i {
+    transform: scale(1.12);
+}
+
+.transport-card:hover .transport-link {
+    transform: translateX(6px);
+}
+
+
+/* =========================================
+   TRANSPORT POPUP
+========================================= */
+
+.transport-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.65);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.transport-box {
+    width: 100%;
+    max-width: 650px;
+    background: #ffffff;
+    color: #222;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.transport-box h2 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.transport-box>p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.transport-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.transport-option {
+    display: block;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #222;
+    background: #f8fafc;
+    transition: 0.25s ease;
+}
+
+.transport-option:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.transport-option .transport-icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.transport-option strong {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.transport-option small {
+    color: #666;
+    line-height: 1.4;
+}
+
+.close-transport {
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    cursor: pointer;
+    color: #555;
+}
+
+.close-transport:hover {
+    color: #e11d48;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .transport-options {
+        grid-template-columns: 1fr;
+    }
+
+    .transport-box {
+        padding: 25px 18px;
+    }
+}
+
+/* =========================================
+   EMERGENCY CARD
+========================================= */
+
+.emergency-card {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.emergency-card i {
+    font-size: 42px;
+    margin-bottom: 15px;
+    transition: 0.3s ease;
+}
+
+.emergency-card h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.emergency-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.emergency-card:hover {
+    transform: translateY(-8px);
+}
+
+.emergency-card:hover i {
+    transform: scale(1.12);
+}
+
+
+/* =========================================
+   EMERGENCY POPUP
+========================================= */
+
+.emergency-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.65);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.emergency-box {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    background: white;
+    color: #222;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.emergency-box h2 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.emergency-box>p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.close-emergency {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.emergency-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.emergency-option {
+    display: block;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #222;
+    background: #f8fafc;
+    transition: 0.25s ease;
+}
+
+.emergency-option:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.emergency-option span {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.emergency-option strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.emergency-option small {
+    color: #666;
+    line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+
+    .emergency-options {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================
+   EMERGENCY SERVICES
+========================================= */
+
+.emergency-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.emergency-card {
+    display: block;
+    padding: 30px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #1e293b;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
+}
+
+.emergency-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.emergency-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.emergency-card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.emergency-card p {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.emergency-card span {
+    font-weight: 700;
+}
+
+@media (max-width: 700px) {
+    .emergency-options {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGrid | Register</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(15, 23, 42, 0.65), rgba(37, 99, 235, 0.65)),
+                url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .register-container {
+            width: 100%;
+            max-width: 1050px;
+            min-height: 620px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* LEFT SIDE */
+
+        .left-section {
+            background:
+                linear-gradient(rgba(30, 64, 175, 0.65), rgba(14, 116, 144, 0.7)),
+                url("https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1000&q=80");
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 35px;
+        }
+
+        .left-section h1 {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .left-section p {
+            font-size: 17px;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        .travel-icons {
+            display: flex;
+            gap: 25px;
+            margin-top: 35px;
+            font-size: 35px;
+        }
+
+        /* RIGHT SIDE */
+
+        .right-section {
+            padding: 45px 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .back-btn {
+            align-self: flex-start;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: bold;
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #1d4ed8;
+            transform: translateX(-4px);
+        }
+
+        .right-section h2 {
+            font-size: 34px;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 28px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            color: #374151;
+            margin-bottom: 7px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .register-btn {
+            width: 100%;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: 0.3s;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 22px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .login-text a {
+            color: #2563eb;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            font-size: 14px;
+        }
+
+        @media (max-width: 800px) {
+
+            .register-container {
+                grid-template-columns: 1fr;
+            }
+
+            .left-section {
+                min-height: 300px;
+                padding: 40px;
+            }
+
+            .left-section h1 {
+                font-size: 32px;
+            }
+
+            .right-section {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .left-section {
+                padding: 30px;
+            }
+
+            .right-section {
+                padding: 30px 22px;
+            }
+
+            .left-section h1 {
+                font-size: 28px;
+            }
+
+            .right-section h2 {
+                font-size: 28px;
+            }
+
+            .travel-icons {
+                font-size: 28px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <!-- LEFT -->
+
+        <div class="left-section">
+
+            <div class="logo">
+                🌍 TravelGrid
+            </div>
+
+            <h1>
+                Start Your<br>
+                Travel Journey
+            </h1>
+
+            <p>
+                Create your TravelGrid account and plan your
+                trips with maps, hotels, transport and
+                emergency services in one place.
+            </p>
+
+            <div class="travel-icons">
+                🗺️ 🏨 🚆 ✈️
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="right-section">
+
+            <a href="index.html" class="back-btn">
+                ← Back to Home
+            </a>
+
+            <h2>
+                Create Account
+            </h2>
+
+            <p class="subtitle">
+                Register to continue your journey
+            </p>
+
+
+            <form id="registerForm">
+
+                <!-- FULL NAME -->
+
+                <div class="input-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">👤</span>
+
+                        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="input-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">📧</span>
+
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MOBILE -->
+
+                <div class="input-group">
+
+                    <label>
+                        Mobile Number
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">📱</span>
+
+                        <input type="tel" id="mobile" name="mobile" placeholder="Enter mobile number" maxlength="10"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">🔒</span>
+
+                        <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit" class="register-btn">
+                    🚀 Create Account
+                </button>
+
+                <div id="message" class="message"></div>
+
+            </form>
+
+
+            <p class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login here
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- IMPORTANT:
+         Keep your existing register.js -->
+
+    <script src="js/register.js"></script>
+
+</body>
+
+</html>

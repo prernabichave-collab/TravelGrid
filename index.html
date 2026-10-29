@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelGrid - Smart Travel Guide</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h2>TravelGrid</h2>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="profile.htm">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+            <h1>Welcome to TravelGrid</h1>
+
+            <p>
+                Plan your journey with hotels,
+                transport, maps and emergency services
+                in one place.
+            </p>
+
+            <a href="login.html" class="btn">
+                Get Started
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Features -->
+
+    <section class="features">
+
+        <h2>Our Features</h2>
+
+        <div class="card-container">
+
+            <!-- GOOGLE MAPS -->
+            <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer"
+                class="card google-maps-card">
+                <i class="fa-solid fa-map-location-dot"></i>
+
+                <h3>Explore with Google Maps</h3>
+
+                <p>
+                    Search places, get directions,
+                    check distance and travel time.
+                </p>
+
+                <span class="feature-link">
+                    Open Google Maps →
+                </span>
+            </a>
+
+
+            <!-- HOTEL BOOKING -->
+            <a href="hotels.html" class="card hotel-booking-card">
+                <i class="fa-solid fa-hotel"></i>
+
+                <h3>Hotel Booking</h3>
+
+                <p>
+                    Find comfortable hotels,
+                    check details and explore stays.
+                </p>
+
+                <span class="feature-link">
+                    Find Hotels →
+                </span>
+            </a>
+
+            <!-- TRANSPORT -->
+
+            <a href="transport.html" class="card transport-card">
+
+                <i class="fa-solid fa-bus"></i>
+
+                <h3>Transport</h3>
+
+                <p>
+                    Explore bus, train, flight and cab
+                    services for your journey.
+                </p>
+
+                <span class="feature-link">
+                    Explore Transport →
+                </span>
+
+            </a>
+
+
+
+            <!-- EMERGENCY -->
+            <div class="card emergency-card" onclick="openEmergency()">
+
+                <i class="fa-solid fa-truck-medical"></i>
+
+                <h3>Emergency</h3>
+
+                <p>
+                    Quickly access emergency services
+                    during your journey.
+                </p>
+
+                <span class="feature-link">
+                    Emergency Services →
+                </span>
+
+            </div>
+
+    </section>
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 TravelGrid. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <script src="js/app.js"></script>
+
+
+
+
+    <div id="emergencyPopup" class="emergency-popup">
+
+        <div class="emergency-box">
+
+            <button class="close-emergency" onclick="closeEmergency()" type="button">
+                ×
+            </button>
+
+            <h2>🚨 Emergency Services</h2>
+
+            <p>
+                Quick access to important emergency services.
+            </p>
+
+            <div class="emergency-options">
+
+                <a href="tel:112" class="emergency-option">
+
+                    <span>🚨</span>
+
+                    <strong>Emergency – 112</strong>
+
+                    <small>
+                        Call the national emergency number.
+                    </small>
+
+                </a>
+
+                <a href="tel:108" class="emergency-option">
+
+                    <span>🚑</span>
+
+                    <strong>Ambulance – 108</strong>
+
+                    <small>
+                        Call for emergency ambulance service.
+                    </small>
+
+                </a>
+
+                <a href="tel:100" class="emergency-option">
+
+                    <span>👮</span>
+
+                    <strong>Police – 100</strong>
+
+                    <small>
+                        Contact police emergency service.
+                    </small>
+
+                </a>
+
+                <a href="tel:101" class="emergency-option">
+
+                    <span>🔥</span>
+
+                    <strong>Fire – 101</strong>
+
+                    <small>
+                        Contact fire emergency service.
+                    </small>
+
+                </a>
+                <a href="https://www.google.com/maps/search/hospitals+near+me" target="_blank" class="emergency-card">
+
+                    <div class="emergency-icon">🏥</div>
+
+                    <h3>Nearest Hospital</h3>
+
+                    <p>
+                        Find hospitals near your current location.
+                    </p>
+
+                    <span>
+                        Find Hospital →
+                    </span>
+
+                </a>
+
+
+                <a href="https://www.google.com/maps/search/police+stations+near+me" target="_blank"
+                    class="emergency-card">
+
+                    <div class="emergency-icon">👮</div>
+
+                    <h3>Nearest Police Station</h3>
+
+                    <p>
+                        Find police stations near your current location.
+                    </p>
+
+                    <span>
+                        Find Police Station →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function openEmergency() {
+
+            document.getElementById("emergencyPopup").style.display = "flex";
+
+        }
+
+        function closeEmergency() {
+
+            document.getElementById("emergencyPopup").style.display = "none";
+
+        }
+
+        document.addEventListener("click", function (event) {
+
+            const popup =
+                document.getElementById("emergencyPopup");
+
+            if (event.target === popup) {
+
+                closeEmergency();
+
+            }
+
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGrid | Smart Travel Planning</title>
+
+    <link rel="stylesheet" href="css/travel.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🌍 <span>TravelGrid</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="travel.html" class="active">Travel</a>
+            <a href="hotels.html">Hotels</a>
+            <a href="booking.html">Darshan Booking</a>
+            <a href="history.html"> history</a>
+        </nav>
+
+        <button class="logout-btn" onclick="logoutUser()">
+            Logout
+        </button>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                ✦ SMART TRAVEL PLANNER
+            </span>
+
+            <h1>
+                Plan Your Perfect
+                <span>Maharashtra Journey</span>
+            </h1>
+
+            <p>
+                Choose destinations, select places, book your travel,
+                reserve a hotel and complete everything in one simple plan.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <main class="container">
+
+
+        <!-- ================= RELIGIOUS JOURNEYS ================= -->
+
+        <section class="section-block">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">
+                        SPIRITUAL EXPERIENCES
+                    </span>
+
+                    <h2>
+                        🛕 Special Religious Journeys
+                    </h2>
+
+                    <p>
+                        Select sacred places or plan the complete religious journey.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="religious-grid">
+
+                <div class="religious-card">
+                    <div class="religious-icon">🕉️</div>
+
+                    <h3>Ashtavinayak Yatra</h3>
+
+                    <p>
+                        Explore the eight famous Ganapati temples of Maharashtra.
+                    </p>
+
+                    <button onclick="openReligious('ashtavinayak')">
+                        View Places →
+                    </button>
+                </div>
+
+
+                <div class="religious-card">
+                    <div class="religious-icon">🌺</div>
+
+                    <h3>3½ Shakti Peethas</h3>
+
+                    <p>
+                        Visit the important Shakti Peethas located in Maharashtra.
+                    </p>
+
+                    <button onclick="openReligious('shakti')">
+                        View Places →
+                    </button>
+                </div>
+
+
+                <div class="religious-card">
+                    <div class="religious-icon">🔱</div>
+
+                    <h3>3 Jyotirlingas</h3>
+
+                    <p>
+                        Plan a Maharashtra Jyotirlinga spiritual circuit.
+                    </p>
+
+                    <button onclick="openReligious('jyotirlinga')">
+                        View Places →
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SEARCH ================= -->
+
+        <section class="search-section">
+
+            <div class="search-box">
+
+                <span>🔎</span>
+
+                <input id="destinationSearch" type="text" placeholder="Search Mumbai, Pune, temple, fort, beach...">
+
+                <button onclick="searchDestinations()">
+                    Search
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= POPULAR DESTINATIONS ================= -->
+
+        <section class="section-block">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        EXPLORE MAHARASHTRA
+                    </span>
+
+                    <h2>
+                        📍 Popular Maharashtra Destinations
+                    </h2>
+
+                    <p>
+                        Select a destination and choose places to visit.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="destinationGrid" class="destination-grid"></div>
+
+        </section>
+
+
+        <!-- ================= DESTINATION DETAILS ================= -->
+
+        <section id="destinationDetails" class="details-section hidden">
+
+            <div class="destination-header">
+
+                <div>
+
+                    <span class="section-label">
+                        SELECTED DESTINATION
+                    </span>
+
+                    <h2 id="destinationName">
+                        -
+                    </h2>
+
+                    <p id="destinationDescription">
+                        -
+                    </p>
+
+                </div>
+
+                <button class="close-section-btn" onclick="closeDestination()">
+                    ✕ Close
+                </button>
+
+            </div>
+
+
+            <div class="places-toolbar">
+
+                <div>
+                    <strong>
+                        📸 Places to Visit
+                    </strong>
+
+                    <span id="selectedPlaceCount">
+                        0 selected
+                    </span>
+                </div>
+
+                <button class="outline-btn" onclick="selectAllPlaces()">
+                    Select All Places
+                </button>
+
+            </div>
+
+
+            <div id="placesGrid" class="places-grid">
+            </div>
+
+
+            <!-- SELECTED PLACES -->
+
+            <div class="selected-places-box">
+
+                <h3>
+                    ✓ Selected Places
+                </h3>
+
+                <div id="selectedPlacesList" class="selected-place-list">
+
+                    <span class="empty-selection">
+                        No places selected yet.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PLAN YOUR JOURNEY ================= -->
+
+        <section id="journeySection" class="planner-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        YOUR JOURNEY
+                    </span>
+
+                    <h2>
+                        🧳 Plan Your Journey
+                    </h2>
+
+                    <p>
+                        Enter your journey details and choose your travel mode.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="planner-card">
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            📍 From
+                        </label>
+
+                        <input id="fromLocation" type="text" placeholder="Example: Bhiwandi">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            📍 To
+                        </label>
+
+                        <input id="toLocation" type="text" readonly placeholder="Select destination">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            📅 Travel Date
+                        </label>
+
+                        <input id="travelDate" type="date">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            📅 Return Date
+                        </label>
+
+                        <input id="returnDate" type="date">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            👥 Persons
+                        </label>
+
+                        <input id="passengers" type="number" min="1" value="1">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            📱 Mobile Number
+                        </label>
+
+                        <input id="mobile" type="tel" maxlength="10" placeholder="10 digit mobile number">
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label>
+                            👤 Traveller Name(s)
+                        </label>
+
+                        <input id="travellerNames" type="text" placeholder="Enter traveller name(s)">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TRAVEL MODE ================= -->
+
+        <section class="travel-mode-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        TRANSPORT
+                    </span>
+
+                    <h2>
+                        🚘 Select Travel Mode
+                    </h2>
+
+                    <p>
+                        Select one travel mode to continue booking.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="travel-mode-grid">
+
+
+                <button class="travel-mode-card active" onclick="selectTravelMode('car')" id="mode-car">
+
+                    <span class="mode-icon">
+                        🚗
+                    </span>
+
+                    <strong>
+                        Car
+                    </strong>
+
+                    <small>
+                        Private / Rental
+                    </small>
+
+                </button>
+
+
+                <button class="travel-mode-card" onclick="selectTravelMode('bus')" id="mode-bus">
+
+                    <span class="mode-icon">
+                        🚌
+                    </span>
+
+                    <strong>
+                        Bus
+                    </strong>
+
+                    <small>
+                        AC / Non-AC
+                    </small>
+
+                </button>
+
+
+                <button class="travel-mode-card" onclick="selectTravelMode('train')" id="mode-train">
+
+                    <span class="mode-icon">
+                        🚆
+                    </span>
+
+                    <strong>
+                        Train
+                    </strong>
+
+                    <small>
+                        Sleeper / AC
+                    </small>
+
+                </button>
+
+
+                <button class="travel-mode-card" onclick="selectTravelMode('flight')" id="mode-flight">
+
+                    <span class="mode-icon">
+                        ✈️
+                    </span>
+
+                    <strong>
+                        Flight
+                    </strong>
+
+                    <small>
+                        Airport based
+                    </small>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TRAVEL BOOKING ================= -->
+
+        <section id="travelBookingSection" class="booking-section hidden">
+
+            <div class="booking-header">
+
+                <div>
+
+                    <span class="section-label">
+                        TRAVEL BOOKING
+                    </span>
+
+                    <h2 id="travelBookingTitle">
+                        🚗 Car Booking
+                    </h2>
+
+                    <p id="travelBookingSubtitle">
+                        Select your vehicle and booking details.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="travelOptions" class="travel-options">
+            </div>
+
+
+            <div id="selectedTravelBox" class="selected-travel-box hidden">
+
+                <div class="selected-travel-heading">
+
+                    <h3>
+                        🎫 Selected Travel
+                    </h3>
+
+                    <span id="selectedTravelModeBadge">
+                        CAR
+                    </span>
+
+                </div>
+
+
+                <div id="selectedTravelDetails" class="selected-travel-details">
+                </div>
+
+
+                <div class="passenger-box">
+
+                    <h3>
+                        👥 Passenger Details
+                    </h3>
+
+                    <div id="passengerForms"></div>
+
+                </div>
+
+
+                <div class="travel-action-row">
+
+                    <button class="secondary-btn" onclick="changeTravelOption()">
+                        ← Change Option
+                    </button>
+
+                    <button class="primary-btn" onclick="confirmTravelSelection()">
+                        Confirm Travel Selection →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div id="travelSelectionSuccess" class="success-box hidden">
+            </div>
+
+        </section>
+
+
+        <!-- ================= HOTEL BOOKING ================= -->
+
+        <section class="hotels-section">
+
+            <div class="hotels-content">
+
+                <div>
+
+                    <span class="section-label">
+                        ACCOMMODATION
+                    </span>
+
+                    <h2>
+                        🏨 Book Hotel
+                    </h2>
+
+                    <p>
+                        Select your hotel separately.
+                        Hotel amount will be included in the final payment.
+                    </p>
+
+                    <div id="hotelStatus" class="hotel-status">
+                        Hotel booking not completed yet.
+                    </div>
+
+                </div>
+
+                <a href="hotels.html" class="hotel-button">
+
+                    🏨 Book Hotel
+
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- ================= ROUTER MAP ================= -->
+
+        <section class="router-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        ROUTE PLANNER
+                    </span>
+
+                    <h2>
+                        🗺️ Route Map
+                    </h2>
+
+                    <p>
+                        Check route, distance and estimated travel time.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-toolbar">
+
+                <button class="primary-btn" onclick="calculateRoute()">
+
+                    🗺️ Find Route
+
+                </button>
+
+
+                <button class="secondary-btn" onclick="openGoogleRoute()">
+
+                    🌐 Google Maps
+
+                </button>
+
+            </div>
+
+
+            <div id="routeResult" class="route-result hidden">
+
+                <div class="route-stat">
+
+                    <span>
+                        📏 Distance
+                    </span>
+
+                    <strong id="distance">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="route-stat">
+
+                    <strong id="travelTime">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="route-stat">
+
+                    <span>
+                        🚘 Mode
+                    </span>
+
+                    <strong id="selectedMode">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div id="map"></div>
+
+        </section>
+
+
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer>
+
+            <div class="footer-logo">
+                🌍 TravelGrid
+            </div>
+
+            <p>
+                Smart Travel Planning & Tourism Platform
+            </p>
+
+            <span>
+                © 2026 TravelGrid
+            </span>
+
+        </footer>
+
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+        <script src="js/travel.js"></script>
+
+</body>
+
+</html>

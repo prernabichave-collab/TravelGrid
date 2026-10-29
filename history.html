@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGrid | Booking History</title>
+
+
+    <!-- =================================================
+         CSS
+    ================================================== -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+            min-height: 100vh;
+        }
+
+
+        /* =================================================
+           NAVBAR
+        ================================================= */
+
+        .navbar {
+            width: 100%;
+            height: 72px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1264e8;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .nav-links a {
+            text-decoration: none;
+
+            color: #475569;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            padding: 10px 15px;
+
+            border-radius: 8px;
+
+            transition: 0.25s;
+        }
+
+
+        .nav-links a:hover {
+            background: #eef4ff;
+            color: #1264e8;
+        }
+
+
+        .nav-links a.active {
+            background: #1264e8;
+            color: white;
+        }
+
+
+        /* =================================================
+           HERO
+        ================================================= */
+
+        .hero {
+
+            background:
+                linear-gradient(135deg,
+                    #1264e8,
+                    #6236d8);
+
+            color: white;
+
+            padding: 65px 20px;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border-radius: 50%;
+
+            top: -100px;
+            left: 5%;
+        }
+
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            background: rgba(255, 255, 255, 0.07);
+
+            border-radius: 50%;
+
+            right: 5%;
+            bottom: -170px;
+        }
+
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .hero-icon {
+            font-size: 55px;
+            margin-bottom: 12px;
+        }
+
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+
+        .hero p {
+            font-size: 17px;
+            opacity: 0.95;
+        }
+
+
+        /* =================================================
+           MAIN
+        ================================================= */
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+
+            margin: 40px auto 70px;
+        }
+
+
+        /* =================================================
+           TITLE
+        ================================================= */
+
+        .page-heading {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .page-heading h2 {
+            font-size: 27px;
+            color: #173b7a;
+
+            margin-bottom: 7px;
+        }
+
+
+        .page-heading p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+
+        /* =================================================
+           DELETE ALL
+        ================================================= */
+
+        .delete-all {
+            border: none;
+
+            background: #ef4444;
+
+            color: white;
+
+            padding: 12px 18px;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+
+        .delete-all:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+
+        /* =================================================
+           SUMMARY CARDS
+        ================================================= */
+
+        .summary-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+
+        .summary-card {
+
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 6px 20px rgba(15, 23, 42, 0.06);
+
+            transition: 0.25s;
+        }
+
+
+        .summary-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 10px 25px rgba(15, 23, 42, 0.10);
+        }
+
+
+        .summary-icon {
+
+            width: 58px;
+            height: 58px;
+
+            border-radius: 14px;
+
+            background: #eef4ff;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 28px;
+        }
+
+
+        .summary-card:nth-child(2) .summary-icon {
+
+            background: #ecfdf3;
+        }
+
+
+        .summary-card:nth-child(3) .summary-icon {
+
+            background: #fff7ed;
+        }
+
+
+        .summary-card small {
+
+            display: block;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .summary-card strong {
+
+            display: block;
+
+            color: #173b7a;
+
+            font-size: 27px;
+        }
+
+
+        /* =================================================
+           HISTORY CARDS
+        ================================================= */
+
+        #historyList {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 22px;
+        }
+
+
+        .history-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            border: 1px solid #e1e8f0;
+
+            box-shadow:
+                0 7px 24px rgba(15, 23, 42, 0.07);
+        }
+
+
+        /* HEADER */
+
+        .card-header {
+
+            padding: 18px 22px;
+
+            background: #f8fbff;
+
+            border-bottom: 1px solid #e5eaf0;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .card-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+
+        .card-icon {
+
+            width: 52px;
+            height: 52px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #eaf2ff;
+
+            font-size: 27px;
+        }
+
+
+        .card-title h3 {
+
+            color: #173b7a;
+
+            font-size: 18px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .card-title small {
+
+            color: #64748b;
+
+            font-size: 12px;
+        }
+
+
+        .status {
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        /* BODY */
+
+        .card-body {
+
+            padding: 22px;
+        }
+
+
+        .person {
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            padding: 13px 15px;
+
+            border-radius: 10px;
+
+            margin-bottom: 18px;
+
+            color: #334155;
+        }
+
+
+        .person strong {
+            color: #173b7a;
+        }
+
+
+        /* SECTION */
+
+        .details-section {
+
+            border-radius: 13px;
+
+            padding: 18px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .travel-section {
+
+            background: #eff6ff;
+
+            border: 1px solid #bfdbfe;
+        }
+
+
+        .hotel-section {
+
+            background: #f0fdf4;
+
+            border: 1px solid #bbf7d0;
+        }
+
+
+        .details-section h4 {
+
+            font-size: 16px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .travel-section h4 {
+            color: #1d4ed8;
+        }
+
+
+        .hotel-section h4 {
+            color: #15803d;
+        }
+
+
+        /* GRID */
+
+        .details-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .detail {
+
+            background: white;
+
+            border-radius: 10px;
+
+            padding: 13px;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .detail-label {
+
+            display: block;
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            margin-bottom: 5px;
+
+            text-transform: uppercase;
+        }
+
+
+        .detail-value {
+
+            color: #172033;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            line-height: 1.5;
+        }
+
+
+        /* =================================================
+           AMOUNT
+        ================================================= */
+
+        .amount-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            border-top: 1px solid #e2e8f0;
+
+            padding-top: 18px;
+        }
+
+
+        .amount-info {
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        .amount-info strong {
+
+            color: #c2410c;
+        }
+
+
+        .total-box {
+
+            background: #fff7ed;
+
+            border: 1px solid #fed7aa;
+
+            border-radius: 12px;
+
+            padding: 12px 20px;
+
+            text-align: center;
+
+            min-width: 155px;
+        }
+
+
+        .total-box span {
+
+            display: block;
+
+            color: #9a3412;
+
+            font-size: 11px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .total-box strong {
+
+            color: #c2410c;
+
+            font-size: 23px;
+        }
+
+
+        /* =================================================
+           DELETE
+        ================================================= */
+
+        .delete-single {
+
+            margin-top: 17px;
+
+            border: none;
+
+            background: #fff1f2;
+
+            color: #be123c;
+
+            border: 1px solid #fecdd3;
+
+            padding: 9px 14px;
+
+            border-radius: 8px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+
+        .delete-single:hover {
+
+            background: #ffe4e6;
+        }
+
+
+        /* =================================================
+           EMPTY
+        ================================================= */
+
+        .empty {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 65px 20px;
+
+            text-align: center;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 7px 24px rgba(15, 23, 42, 0.06);
+        }
+
+
+        .empty-icon {
+
+            font-size: 65px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .empty h2 {
+
+            color: #173b7a;
+
+            margin-bottom: 8px;
+        }
+
+
+        .empty p {
+
+            color: #64748b;
+
+            margin-bottom: 25px;
+        }
+
+
+        .empty-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .empty-buttons a {
+
+            text-decoration: none;
+
+            padding: 12px 20px;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+        }
+
+
+        .travel-btn {
+
+            background: #1264e8;
+
+            color: white;
+        }
+
+
+        .hotel-btn {
+
+            background: #e8f5ec;
+
+            color: #15803d;
+        }
+
+
+        /* =================================================
+           FOOTER
+        ================================================= */
+
+        footer {
+
+            background: #172033;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+
+            font-size: 14px;
+        }
+
+
+        /* =================================================
+           RESPONSIVE
+        ================================================= */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+
+                height: auto;
+
+                padding: 17px 5%;
+
+                flex-direction: column;
+
+                gap: 14px;
+            }
+
+
+            .nav-links {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .hero h1 {
+
+                font-size: 32px;
+            }
+
+
+            .summary-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .page-heading {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .details-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .amount-row {
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .total-box {
+
+                width: 100%;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .hero {
+
+                padding: 45px 15px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 28px;
+            }
+
+
+            .card-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .status {
+
+                align-self: flex-start;
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================================
+         NAVBAR
+    ================================================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🌍 TravelGrid
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                🏠 Home
+            </a>
+
+            <a href="travel.html">
+                ✈️ Travel
+            </a>
+
+            <a href="hotels.html">
+                🏨 Hotels
+            </a>
+
+            <a href="history.html" class="active">
+                📚 History
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-icon">
+                📚
+            </div>
+
+            <h1>
+                Booking History
+            </h1>
+
+            <p>
+                View all your TravelGrid travel and hotel bookings in one place.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         MAIN
+    ================================================== -->
+
+    <main class="container">
+
+
+        <!-- PAGE HEADING -->
+
+        <div class="page-heading">
+
+            <div>
+
+                <h2>
+                    🧾 My Booking History
+                </h2>
+
+                <p>
+                    Your travel and hotel bookings are saved here.
+                </p>
+
+            </div>
+
+
+            <button class="delete-all" onclick="deleteAllHistory()">
+
+                🗑️ Delete All
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             SUMMARY
+        ================================================== -->
+
+        <div class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🎫
+                </div>
+
+                <div>
+
+                    <small>
+                        Travel Bookings
+                    </small>
+
+                    <strong id="travelCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🏨
+                </div>
+
+                <div>
+
+                    <small>
+                        Hotel Bookings
+                    </small>
+
+                    <strong id="hotelCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📋
+                </div>
+
+                <div>
+
+                    <small>
+                        Total Bookings
+                    </small>
+
+                    <strong id="totalCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             HISTORY
+        ================================================== -->
+
+        <div id="historyList"></div>
+
+
+        <!-- EMPTY -->
+
+        <div id="emptyHistory" class="empty" style="display:none;">
+
+            <div class="empty-icon">
+                📭
+            </div>
+
+            <h2>
+                No Booking History
+            </h2>
+
+            <p>
+                Once you book travel or hotel,
+                your booking will appear here.
+            </p>
+
+
+            <div class="empty-buttons">
+
+                <a href="travel.html" class="travel-btn">
+
+                    ✈️ Book Travel
+
+                </a>
+
+
+                <a href="hotels.html" class="hotel-btn">
+
+                    🏨 Book Hotel
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer>
+
+        © 2026 TravelGrid — Smart Travel Planning & Tourism Platform
+
+    </footer>
+
+
+
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script>
+
+
+        /* =================================================
+           GET STORAGE
+        ================================================= */
+
+        function getStorageArray(key) {
+
+            try {
+
+                const data =
+                    JSON.parse(
+                        localStorage.getItem(key) || "[]"
+                    );
+
+                return Array.isArray(data)
+                    ? data
+                    : [];
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Storage error:",
+                    error
+                );
+
+                return [];
+
+            }
+
+        }
+
+
+        /* =================================================
+           MONEY
+        ================================================= */
+
+        function money(value) {
+
+            return "₹" +
+                Math.round(
+                    Number(value) || 0
+                ).toLocaleString("en-IN");
+
+        }
+
+
+        /* =================================================
+           ESCAPE HTML
+        ================================================= */
+
+        function escapeHTML(value) {
+
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* =================================================
+           MODE ICON
+        ================================================= */
+
+        function getModeIcon(mode) {
+
+            const value =
+                String(mode || "")
+                    .toLowerCase();
+
+
+            if (value.includes("bus"))
+                return "🚌";
+
+
+            if (value.includes("train"))
+                return "🚆";
+
+
+            if (value.includes("flight"))
+                return "✈️";
+
+
+            if (
+                value.includes("bike") ||
+                value.includes("cycling")
+            )
+                return "🏍️";
+
+
+            return "🚗";
+
+        }
+
+
+        /* =================================================
+           GET BOOKINGS
+        ================================================= */
+
+        function getTravelBookings() {
+
+            return getStorageArray(
+                "travelBookings"
+            );
+
+        }
+
+
+        function getHotelBookings() {
+
+            return getStorageArray(
+                "hotelBookings"
+            );
+
+        }
+
+
+        /* =================================================
+           BUILD HISTORY
+        ================================================= */
+
+        function buildHistory() {
+
+            const travel =
+                getTravelBookings();
+
+            const hotels =
+                getHotelBookings();
+
+
+            const history = [];
+
+
+            travel.forEach(
+                (booking, index) => {
+
+                    history.push({
+
+                        type: "travel",
+
+                        index: index,
+
+                        data: booking
+
+                    });
+
+                }
+            );
+
+
+            hotels.forEach(
+                (booking, index) => {
+
+                    history.push({
+
+                        type: "hotel",
+
+                        index: index,
+
+                        data: booking
+
+                    });
+
+                }
+            );
+
+
+            return history;
+
+        }
+
+
+        /* =================================================
+           RENDER HISTORY
+        ================================================= */
+
+        function renderHistory() {
+
+            const travel =
+                getTravelBookings();
+
+            const hotels =
+                getHotelBookings();
+
+
+            const history =
+                buildHistory();
+
+
+            document.getElementById(
+                "travelCount"
+            ).textContent =
+                travel.length;
+
+
+            document.getElementById(
+                "hotelCount"
+            ).textContent =
+                hotels.length;
+
+
+            document.getElementById(
+                "totalCount"
+            ).textContent =
+                history.length;
+
+
+            const list =
+                document.getElementById(
+                    "historyList"
+                );
+
+
+            const empty =
+                document.getElementById(
+                    "emptyHistory"
+                );
+
+
+            if (history.length === 0) {
+
+                list.innerHTML = "";
+
+                empty.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+            empty.style.display =
+                "none";
+
+
+            list.innerHTML =
+                history.map(
+                    item => {
+
+                        if (
+                            item.type === "travel"
+                        ) {
+
+                            return createTravelCard(
+                                item.data,
+                                item.index
+                            );
+
+                        }
+
+
+                        return createHotelCard(
+                            item.data,
+                            item.index
+                        );
+
+                    }
+                ).join("");
+
+        }
+
+
+        /* =================================================
+           TRAVEL CARD
+        ================================================= */
+
+        function createTravelCard(
+            booking,
+            index
+        ) {
+
+            const mode =
+                booking.mode ||
+                booking.travelMode ||
+                "Car";
+
+
+            const from =
+                booking.from ||
+                booking.fromLocation ||
+                "-";
+
+
+            const to =
+                booking.to ||
+                booking.toLocation ||
+                "-";
+
+
+            const option =
+                booking.option ||
+                booking.vehicle ||
+                booking.service ||
+                booking.selectedOption ||
+                "-";
+
+
+            const passenger =
+                booking.passengerNames &&
+                    Array.isArray(
+                        booking.passengerNames
+                    ) &&
+                    booking.passengerNames.length
+                    ? booking.passengerNames[0]
+                    : (
+                        booking.passengerName ||
+                        booking.name ||
+                        "Passenger"
+                    );
+
+
+            const amount =
+                booking.amount ||
+                booking.totalAmount ||
+                0;
+
+
+            const date =
+                booking.date ||
+                "-";
+
+
+            const reference =
+                booking.reference ||
+                booking.bookingId ||
+                "Travel Booking";
+
+
+            return `
+
+                <div class="history-card">
+
+
+                    <div class="card-header">
+
+
+                        <div class="card-title">
+
+                            <div class="card-icon">
+
+                                ${getModeIcon(mode)}
+
+                            </div>
+
+
+                            <div>
+
+                                <h3>
+                                    🎫 Travel Booking
+                                </h3>
+
+                                <small>
+                                    ${escapeHTML(reference)}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="status">
+
+                            ${escapeHTML(
+                booking.status ||
+                "CONFIRMED"
+            )}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+
+                        <div class="person">
+
+                            👤
+
+                            <strong>
+                                Passenger:
+                            </strong>
+
+                            ${escapeHTML(
+                passenger
+            )}
+
+                        </div>
+
+
+                        <div class="details-section travel-section">
+
+                            <h4>
+                                ✈️ Travel Details
+                            </h4>
+
+
+                            <div class="details-grid">
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        From
+                                    </span>
+
+                                    <span class="detail-value">
+                                        📍 ${escapeHTML(from)}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        To
+                                    </span>
+
+                                    <span class="detail-value">
+                                        📍 ${escapeHTML(to)}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        Travel Mode
+                                    </span>
+
+                                    <span class="detail-value">
+
+                                        ${getModeIcon(mode)}
+
+                                        ${escapeHTML(mode)}
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        Booked Option
+                                    </span>
+
+                                    <span class="detail-value">
+                                        ${escapeHTML(option)}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        Travel Date
+                                    </span>
+
+                                    <span class="detail-value">
+                                        📅 ${escapeHTML(date)}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        Passengers
+                                    </span>
+
+                                    <span class="detail-value">
+                                        👥 ${escapeHTML(
+                booking.passengers ||
+                booking.numberOfPassengers ||
+                1
+            )
+                }
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="amount-row">
+
+
+                            <div class="amount-info">
+
+                                Travel Booking Amount:
+
+                                <strong>
+                                    ${money(amount)}
+                                </strong>
+
+                                <br>
+
+                                Payment:
+                                ${escapeHTML(
+                    booking.payment ||
+                    "Final Payment"
+                )}
+
+                            </div>
+
+
+                            <div class="total-box">
+
+                                <span>
+                                    TRAVEL AMOUNT
+                                </span>
+
+                                <strong>
+                                    ${money(amount)}
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <button
+                            class="delete-single"
+                            onclick="deleteTravelHistory(${index})">
+
+                            🗑️ Delete Travel Booking
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =================================================
+           HOTEL CARD
+        ================================================= */
+
+        function createHotelCard(
+            booking,
+            index
+        ) {
+
+            const hotel =
+                booking.hotelName ||
+                booking.hotelsName ||
+                booking.name ||
+                "Hotel";
+
+
+            const city =
+                booking.city ||
+                "-";
+
+
+            const place =
+                booking.place ||
+                booking.location ||
+                booking.destination ||
+                "-";
+
+
+            const guest =
+                booking.guestName ||
+                booking.name ||
+                "Guest";
+
+
+            const amount =
+                booking.totalAmount ||
+                booking.hotelBookingAmount ||
+                booking.amount ||
+                0;
+
+
+            const price =
+                booking.pricePerNight ||
+                booking.price ||
+                0;
+
+
+            return `
+
+                <div class="history-card">
+
+
+                    <div class="card-header">
+
+
+                        <div class="card-title">
+
+                            <div class="card-icon">
+
+                                🏨
+
+                            </div>
+
+
+                            <div>
+
+                                <h3>
+                                    🏨 Hotel Booking
+                                </h3>
+
+                                <small>
+                                    ${escapeHTML(
+                booking.bookingId ||
+                "Hotel Booking"
+            )}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="status">
+
+                            ${escapeHTML(
+                booking.bookingStatus ||
+                booking.status ||
+                "CONFIRMED"
+            )}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+
+                        <div class="person">
+
+                            👤
+
+                            <strong>
+                                Guest:
+                            </strong>
+
+                            ${escapeHTML(guest)}
+
+                        </div>
+
+
+                        <div class="details-section hotel-section">
+
+                            <h4>
+                                🏨 Hotel Details
+                            </h4>
+
+
+                            <div class="details-grid">
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        Hotel
+                                    </span>
+
+                                    <span class="detail-value">
+                                        🏨 ${escapeHTML(hotel)}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        City
+                                    </span>
+
+                                    <span class="detail-value">
+                                        📍 ${escapeHTML(city)}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        Tourist Place
+                                    </span>
+
+                                    <span class="detail-value">
+                                        📍 ${escapeHTML(place)}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        Check-in
+                                    </span>
+
+                                    <span class="detail-value">
+                                        📅 ${escapeHTML(
+                booking.checkIn ||
+                "-"
+            )
+                }
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        Check-out
+                                    </span>
+
+                                    <span class="detail-value">
+                                        📅 ${escapeHTML(
+                    booking.checkOut ||
+                    "-"
+                )
+                }
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        Guests / Rooms
+                                    </span>
+
+                                    <span class="detail-value">
+
+                                        👥 ${escapeHTML(
+                    booking.guests || 1
+                )
+                }
+
+                                        &nbsp; / &nbsp;
+
+                                        🛏️ ${escapeHTML(
+                    booking.rooms || 1
+                )
+                }
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        Price / Night
+                                    </span>
+
+                                    <span class="detail-value">
+                                        ${money(price)}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <span class="detail-label">
+                                        Nights
+                                    </span>
+
+                                    <span class="detail-value">
+                                        ${escapeHTML(
+                    booking.nights || 1
+                )
+                }
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="amount-row">
+
+
+                            <div class="amount-info">
+
+                                Hotel Booking Amount:
+
+                                <strong>
+                                    ${money(amount)}
+                                </strong>
+
+                                <br>
+
+                                Payment:
+                                Final TravelGrid Payment
+
+                            </div>
+
+
+                            <div class="total-box">
+
+                                <span>
+                                    HOTEL AMOUNT
+                                </span>
+
+                                <strong>
+                                    ${money(amount)}
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <button
+                            class="delete-single"
+                            onclick="deleteHotelHistory(${index})">
+
+                            🗑️ Delete Hotel Booking
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =================================================
+           DELETE TRAVEL
+        ================================================= */
+
+        function deleteTravelHistory(index) {
+
+            const bookings =
+                getTravelBookings();
+
+
+            if (!bookings[index]) {
+                return;
+            }
+
+
+            if (
+                !confirm(
+                    "Are you sure you want to delete this travel booking?"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            bookings.splice(
+                index,
+                1
+            );
+
+
+            localStorage.setItem(
+                "travelBookings",
+                JSON.stringify(bookings)
+            );
+
+
+            renderHistory();
+
+        }
+
+
+        /* =================================================
+           DELETE HOTEL
+        ================================================= */
+
+        function deleteHotelHistory(index) {
+
+            const bookings =
+                getHotelBookings();
+
+
+            if (!bookings[index]) {
+                return;
+            }
+
+
+            if (
+                !confirm(
+                    "Are you sure you want to delete this hotel booking?"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            bookings.splice(
+                index,
+                1
+            );
+
+
+            localStorage.setItem(
+                "hotelBookings",
+                JSON.stringify(bookings)
+            );
+
+
+            renderHistory();
+
+        }
+
+
+        /* =================================================
+           DELETE ALL
+        ================================================= */
+
+        function deleteAllHistory() {
+
+            const travel =
+                getTravelBookings();
+
+            const hotels =
+                getHotelBookings();
+
+
+            if (
+                travel.length === 0 &&
+                hotels.length === 0
+            ) {
+
+                alert(
+                    "No booking history available."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !confirm(
+                    "Are you sure you want to delete all TravelGrid booking history?"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            localStorage.removeItem(
+                "travelBookings"
+            );
+
+
+            localStorage.removeItem(
+                "hotelBookings"
+            );
+
+
+            localStorage.removeItem(
+                "lastTravelBooking"
+            );
+
+
+            localStorage.removeItem(
+                "lastHotelBooking"
+            );
+
+
+            localStorage.removeItem(
+                "hotelBookingAmount"
+            );
+
+
+            localStorage.removeItem(
+                "selectedHotel"
+            );
+
+
+            renderHistory();
+
+        }
+
+
+        /* =================================================
+           PAGE LOAD
+        ================================================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                renderHistory();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

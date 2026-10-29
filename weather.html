@@ -1,0 +1,1380 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGrid | Weather</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #dbeafe, #f8fafc);
+            color: #1f2937;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .back-btn {
+            border: none;
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 11px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 45px 0 70px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #6b7280;
+            font-size: 17px;
+        }
+
+        /* SEARCH */
+
+        .search-box {
+            background: white;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+            display: flex;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .input-group {
+            flex: 1;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .search-btn {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* POPULAR */
+
+        .popular-section {
+            margin-top: 30px;
+        }
+
+        .popular-section h2 {
+            margin-bottom: 15px;
+        }
+
+        .cities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .cities button {
+            border: 1px solid #bfdbfe;
+            background: white;
+            color: #2563eb;
+            padding: 10px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .cities button:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* WEATHER CARD */
+
+        .weather-section {
+            margin-top: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .weather-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .weather-header h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .weather-header p {
+            color: #6b7280;
+        }
+
+        .current-weather {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .temperature-card {
+            background: #eff6ff;
+            border-radius: 18px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .weather-icon {
+            font-size: 70px;
+            margin-bottom: 10px;
+        }
+
+        .temperature {
+            font-size: 55px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .condition {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .details-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .detail {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .detail span {
+            display: block;
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .detail strong {
+            font-size: 19px;
+        }
+
+        /* FORECAST */
+
+        .forecast-section {
+            margin-top: 35px;
+        }
+
+        .forecast-section h2 {
+            margin-bottom: 18px;
+        }
+
+        .forecast {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .forecast-card {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .forecast-day {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .forecast-icon {
+            font-size: 38px;
+            margin: 8px 0;
+        }
+
+        .forecast-temp {
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .forecast-rain {
+            color: #2563eb;
+            font-size: 13px;
+            margin-top: 7px;
+        }
+
+        /* LOADING */
+
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #2563eb;
+            font-size: 18px;
+            display: none;
+        }
+
+        .error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        /* FOOTER INFO */
+
+        .info-card {
+            margin-top: 30px;
+            background: #eff6ff;
+            border: 1px solid #dbeafe;
+            border-radius: 16px;
+            padding: 22px;
+        }
+
+        .info-card h3 {
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 800px) {
+
+            .search-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-btn {
+                width: 100%;
+            }
+
+            .current-weather {
+                grid-template-columns: 1fr;
+            }
+
+            .forecast {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            🌍 TravelGrid
+        </div>
+
+        <button class="back-btn" onclick="goBack()">
+            ← Back
+        </button>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <h1>🌤️ Live Weather</h1>
+
+            <p>
+                Check current weather and 5-day forecast
+            </p>
+
+        </section>
+
+
+        <!-- SEARCH -->
+
+        <section class="search-box">
+
+            <div class="input-group">
+
+                <label>
+                    📍 Destination
+                </label>
+
+                <input type="text" id="cityInput" placeholder="Example: Mumbai, Pune, Nashik" autocomplete="off">
+
+            </div>
+
+            <button class="search-btn" onclick="searchWeather()">
+                🔍 Check Weather
+            </button>
+
+        </section>
+
+
+        <!-- POPULAR CITIES -->
+
+        <section class="popular-section">
+
+            <h2>
+                Popular Maharashtra Destinations
+            </h2>
+
+            <div class="cities">
+
+                <button onclick="selectCity('Mumbai')">
+                    Mumbai
+                </button>
+
+                <button onclick="selectCity('Pune')">
+                    Pune
+                </button>
+
+                <button onclick="selectCity('Nashik')">
+                    Nashik
+                </button>
+
+                <button onclick="selectCity('Lonavala')">
+                    Lonavala
+                </button>
+
+                <button onclick="selectCity('Mahabaleshwar')">
+                    Mahabaleshwar
+                </button>
+
+                <button onclick="selectCity('Nagpur')">
+                    Nagpur
+                </button>
+
+                <button onclick="selectCity('Aurangabad')">
+                    Aurangabad
+                </button>
+
+                <button onclick="selectCity('Kolhapur')">
+                    Kolhapur
+                </button>
+
+                <button onclick="selectCity('Ratnagiri')">
+                    Ratnagiri
+                </button>
+
+                <button onclick="selectCity('Alibag')">
+                    Alibag
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOADING -->
+
+        <div id="loading" class="loading">
+            ⏳ Loading live weather...
+        </div>
+
+
+        <!-- ERROR -->
+
+        <div id="error" class="error"></div>
+
+
+        <!-- WEATHER -->
+
+        <section id="weatherSection" class="weather-section" style="display:none;">
+
+            <div class="weather-header">
+
+                <h2 id="weatherCity">
+                    Mumbai
+                </h2>
+
+                <p id="weatherDate">
+                    Current Weather
+                </p>
+
+            </div>
+
+
+            <!-- CURRENT WEATHER -->
+
+            <div class="current-weather">
+
+                <div class="temperature-card">
+
+                    <div id="weatherIcon" class="weather-icon">
+                        ☀️
+                    </div>
+
+                    <div id="temperature" class="temperature">
+                        --°C
+                    </div>
+
+                    <div id="condition" class="condition">
+                        --
+                    </div>
+
+                </div>
+
+
+                <!-- DETAILS -->
+
+                <div class="details-card">
+
+                    <div class="detail">
+
+                        <span>
+                            🌡️ Feels Like
+                        </span>
+
+                        <strong id="feelsLike">
+                            --°C
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span>
+                            💧 Humidity
+                        </span>
+
+                        <strong id="humidity">
+                            --%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span>
+                            💨 Wind Speed
+                        </span>
+
+                        <strong id="wind">
+                            -- km/h
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span>
+                            🌧️ Rain
+                        </span>
+
+                        <strong id="rain">
+                            -- mm
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span>
+                            🌅 Sunrise
+                        </span>
+
+                        <strong id="sunrise">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span>
+                            🌇 Sunset
+                        </span>
+
+                        <strong id="sunset">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 5 DAY FORECAST -->
+
+            <div class="forecast-section">
+
+                <h2>
+                    📅 5-Day Forecast
+                </h2>
+
+                <div id="forecast" class="forecast"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFO -->
+
+        <section class="info-card">
+
+            <h3>
+                ℹ️ Live Weather Information
+            </h3>
+
+            <p>
+                TravelGrid uses live weather data to show
+                current temperature, humidity, wind speed,
+                rainfall and a 5-day forecast for your
+                selected destination.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+
+        const cities = {
+            Bhiwandi: {
+
+                lat: 19.2813,
+
+                lon: 73.0483
+
+            },
+
+            Mumbai: {
+                lat: 19.0760,
+                lon: 72.8777
+            },
+
+            Pune: {
+                lat: 18.5204,
+                lon: 73.8567
+            },
+
+            Nashik: {
+                lat: 19.9975,
+                lon: 73.7898
+            },
+
+            Nagpur: {
+                lat: 21.1458,
+                lon: 79.0882
+            },
+
+            ChhatrapatiSambhajinagar: {
+                lat: 19.8762,
+                lon: 75.3433
+            },
+
+            Satara: {
+                lat: 17.6805,
+                lon: 74.0183
+            },
+
+            Kolhapur: {
+                lat: 16.7050,
+                lon: 74.2433
+            },
+
+            Solapur: {
+                lat: 17.6599,
+                lon: 75.9064
+            },
+
+            Sangli: {
+                lat: 16.8524,
+                lon: 74.5815
+            },
+
+            Ahmednagar: {
+                lat: 19.0952,
+                lon: 74.7496
+            },
+
+            Shirdi: {
+                lat: 19.7660,
+                lon: 74.4777
+            },
+
+            Lonavala: {
+                lat: 18.7546,
+                lon: 73.4062
+            },
+
+            Mahabaleshwar: {
+                lat: 17.9307,
+                lon: 73.6477
+            },
+
+            Alibaug: {
+                lat: 18.6414,
+                lon: 72.8722
+            },
+
+            Ratnagiri: {
+                lat: 16.9902,
+                lon: 73.3120
+            },
+
+            Sindhudurg: {
+                lat: 16.3492,
+                lon: 73.5594
+            },
+
+            Amravati: {
+                lat: 20.9374,
+                lon: 77.7796
+            },
+
+            Akola: {
+                lat: 20.7002,
+                lon: 77.0082
+            },
+
+            Nanded: {
+                lat: 19.1383,
+                lon: 77.3210
+            },
+
+            Jalgaon: {
+                lat: 21.0077,
+                lon: 75.5626
+            },
+
+            Dhule: {
+                lat: 20.9042,
+                lon: 74.7749
+            },
+
+            Bhandara: {
+                lat: 21.1700,
+                lon: 79.6500
+            },
+
+            Chandrapur: {
+                lat: 19.9615,
+                lon: 79.2961
+            },
+
+            Wardha: {
+                lat: 20.7453,
+                lon: 78.6022
+            },
+
+            Buldhana: {
+                lat: 20.5293,
+                lon: 76.1842
+            },
+
+            Washim: {
+                lat: 20.1110,
+                lon: 77.1330
+            },
+
+            Yavatmal: {
+                lat: 20.3890,
+                lon: 78.1307
+            },
+
+            Raigad: {
+                lat: 18.5158,
+                lon: 73.1822
+            }
+
+        };
+
+
+        function getWeatherInfo(code) {
+
+            if (code === 0) {
+                return {
+                    icon: "☀️",
+                    text: "Clear Sky"
+                };
+            }
+
+            if (code === 1 || code === 2) {
+                return {
+                    icon: "🌤️",
+                    text: "Partly Cloudy"
+                };
+            }
+
+            if (code === 3) {
+                return {
+                    icon: "☁️",
+                    text: "Cloudy"
+                };
+            }
+
+            if (
+                code === 45 ||
+                code === 48
+            ) {
+                return {
+                    icon: "🌫️",
+                    text: "Foggy"
+                };
+            }
+
+            if (
+                code >= 51 &&
+                code <= 57
+            ) {
+                return {
+                    icon: "🌦️",
+                    text: "Drizzle"
+                };
+            }
+
+            if (
+                code >= 61 &&
+                code <= 67
+            ) {
+                return {
+                    icon: "🌧️",
+                    text: "Rain"
+                };
+            }
+
+            if (
+                code >= 71 &&
+                code <= 77
+            ) {
+                return {
+                    icon: "❄️",
+                    text: "Snow"
+                };
+            }
+
+            if (
+                code >= 80 &&
+                code <= 82
+            ) {
+                return {
+                    icon: "🌧️",
+                    text: "Rain Showers"
+                };
+            }
+
+            if (
+                code >= 95
+            ) {
+                return {
+                    icon: "⛈️",
+                    text: "Thunderstorm"
+                };
+            }
+
+            return {
+                icon: "🌤️",
+                text: "Unknown"
+            };
+
+        }
+
+
+
+        function formatTime(time) {
+
+            if (!time) {
+                return "--";
+            }
+
+            const date =
+                new Date(time);
+
+            return date.toLocaleTimeString(
+                "en-IN",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
+        }
+
+
+
+        async function searchWeather() {
+
+            const input =
+                document
+                    .getElementById("cityInput")
+                    .value
+                    .trim();
+
+            if (!input) {
+
+                alert(
+                    "Please enter a destination."
+                );
+
+                return;
+
+            }
+
+
+            const cityName =
+                Object.keys(cities).find(
+                    city =>
+                        city.toLowerCase() ===
+                        input.toLowerCase()
+                );
+
+
+            if (!cityName) {
+
+                showError(
+                    "This destination is not available yet. Try Mumbai, Pune, Nashik, Lonavala, Mahabaleshwar or another popular city."
+                );
+
+                return;
+
+            }
+
+
+            const location =
+                cities[cityName];
+
+
+            await loadWeather(
+                cityName,
+                location.lat,
+                location.lon
+            );
+
+        }
+
+        async function loadWeather(
+            city,
+            latitude,
+            longitude
+        ) {
+
+            const loading =
+                document.getElementById(
+                    "loading"
+                );
+
+            const error =
+                document.getElementById(
+                    "error"
+                );
+
+            const weatherSection =
+                document.getElementById(
+                    "weatherSection"
+                );
+
+
+            loading.style.display =
+                "block";
+
+            error.style.display =
+                "none";
+
+            weatherSection.style.display =
+                "none";
+
+
+            try {
+
+                const url =
+                    "https://api.open-meteo.com/v1/forecast"
+                    +
+                    "?latitude=" + latitude
+                    +
+                    "&longitude=" + longitude
+                    +
+                    "&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m"
+                    +
+                    "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,sunrise,sunset"
+                    +
+                    "&timezone=auto"
+                    +
+                    "&forecast_days=5";
+
+
+                const response =
+                    await fetch(url);
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Weather API request failed."
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                displayWeather(
+                    city,
+                    data
+                );
+
+
+            }
+
+            catch (err) {
+
+                console.error(
+                    err
+                );
+
+                showError(
+                    "Unable to load live weather. Please check your internet connection and try again."
+                );
+
+            }
+
+            finally {
+
+                loading.style.display =
+                    "none";
+
+            }
+
+        }
+
+
+        function displayWeather(
+            city,
+            data
+        ) {
+
+            const current =
+                data.current;
+
+            const daily =
+                data.daily;
+
+
+            const weather =
+                getWeatherInfo(
+                    current.weather_code
+                );
+
+
+            document.getElementById(
+                "weatherCity"
+            ).textContent =
+                "🌍 " + city;
+
+
+            document.getElementById(
+                "weatherDate"
+            ).textContent =
+                "Live Weather • " +
+                new Date().toLocaleDateString(
+                    "en-IN",
+                    {
+                        weekday: "long",
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+
+            document.getElementById(
+                "weatherIcon"
+            ).textContent =
+                weather.icon;
+
+
+            document.getElementById(
+                "temperature"
+            ).textContent =
+                Math.round(
+                    current.temperature_2m
+                ) + "°C";
+
+
+            document.getElementById(
+                "condition"
+            ).textContent =
+                weather.text;
+
+
+            document.getElementById(
+                "feelsLike"
+            ).textContent =
+                Math.round(
+                    current.apparent_temperature
+                ) + "°C";
+
+
+            document.getElementById(
+                "humidity"
+            ).textContent =
+                current.relative_humidity_2m
+                + "%";
+
+
+            document.getElementById(
+                "wind"
+            ).textContent =
+                Math.round(
+                    current.wind_speed_10m
+                )
+                + " km/h";
+
+
+            document.getElementById(
+                "rain"
+            ).textContent =
+                current.precipitation
+                + " mm";
+
+
+            document.getElementById(
+                "sunrise"
+            ).textContent =
+                formatTime(
+                    daily.sunrise[0]
+                );
+
+
+            document.getElementById(
+                "sunset"
+            ).textContent =
+                formatTime(
+                    daily.sunset[0]
+                );
+
+
+            displayForecast(
+                daily
+            );
+
+
+            document.getElementById(
+                "weatherSection"
+            ).style.display =
+                "block";
+
+        }
+
+
+
+        function displayForecast(
+            daily
+        ) {
+
+            const forecast =
+                document.getElementById(
+                    "forecast"
+                );
+
+
+            forecast.innerHTML =
+                "";
+
+
+            for (
+                let i = 0;
+                i < daily.time.length;
+                i++
+            ) {
+
+                const weather =
+                    getWeatherInfo(
+                        daily.weather_code[i]
+                    );
+
+
+                const date =
+                    new Date(
+                        daily.time[i]
+                    );
+
+
+                const day =
+                    date.toLocaleDateString(
+                        "en-IN",
+                        {
+                            weekday: "short"
+                        }
+                    );
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "forecast-card";
+
+
+                card.innerHTML = `
+
+                    <div class="forecast-day">
+                        ${day}
+                    </div>
+
+                    <div>
+                        ${date.toLocaleDateString(
+                    "en-IN",
+                    {
+                        day: "numeric",
+                        month: "short"
+                    }
+                )}
+                    </div>
+
+                    <div class="forecast-icon">
+                        ${weather.icon}
+                    </div>
+
+                    <div>
+                        ${weather.text}
+                    </div>
+
+                    <div class="forecast-temp">
+                        ${Math.round(
+                    daily.temperature_2m_max[i]
+                )}° /
+                        ${Math.round(
+                    daily.temperature_2m_min[i]
+                )}°C
+                    </div>
+
+                    <div class="forecast-rain">
+                        🌧️
+                        ${daily.precipitation_sum[i]}
+                        mm
+                    </div>
+
+                `;
+
+
+                forecast.appendChild(
+                    card
+                );
+
+            }
+
+        }
+
+
+        function selectCity(city) {
+
+            document.getElementById(
+                "cityInput"
+            ).value =
+                city;
+
+
+            loadWeather(
+                city,
+                cities[city].lat,
+                cities[city].lon
+            );
+
+        }
+
+
+        function showError(message) {
+
+            const error =
+                document.getElementById(
+                    "error"
+                );
+
+            error.textContent =
+                "⚠️ " + message;
+
+            error.style.display =
+                "block";
+
+            document.getElementById(
+                "weatherSection"
+            ).style.display =
+                "none";
+
+            document.getElementById(
+                "loading"
+            ).style.display =
+                "none";
+
+        }
+
+
+        document.getElementById(
+            "cityInput"
+        ).addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    searchWeather();
+
+                }
+
+            }
+        );
+
+
+        function goBack() {
+
+            window.location.href =
+                "travel.html";
+
+        }
+
+
+        function loadFromURL() {
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            const city =
+                params.get("city");
+
+
+            if (
+                city &&
+                cities[city]
+            ) {
+
+                document.getElementById(
+                    "cityInput"
+                ).value =
+                    city;
+
+
+                loadWeather(
+                    city,
+                    cities[city].lat,
+                    cities[city].lon
+                );
+
+            }
+
+        }
+
+
+        loadFromURL();
+
+    </script>
+
+</body>
+
+</html>
+```

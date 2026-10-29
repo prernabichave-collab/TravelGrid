@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGrid - Transport Services</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            background: #f4f7fb;
+            color: #1e293b;
+        }
+
+        .transport-page {
+            min-height: 100vh;
+            padding: 50px 20px;
+        }
+
+        .transport-container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .transport-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .transport-header h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .transport-header p {
+            color: #64748b;
+            font-size: 17px;
+        }
+
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .transport-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-decoration: none;
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: 0.3s ease;
+        }
+
+        .transport-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.14);
+        }
+
+        .transport-icon {
+            font-size: 45px;
+            margin-bottom: 18px;
+        }
+
+        .transport-card h2 {
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .transport-card p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .transport-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .service-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.25s ease;
+        }
+
+        .service-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: #1e293b;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media (max-width: 700px) {
+
+            .transport-page {
+                padding: 30px 15px;
+            }
+
+            .transport-header h1 {
+                font-size: 30px;
+            }
+
+            .transport-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section class="transport-page">
+
+        <div class="transport-container">
+
+            <div class="transport-header">
+
+                <h1>🚍 Transport Services</h1>
+
+                <p>
+                    Choose your preferred transport service for your journey.
+                </p>
+
+            </div>
+
+
+            <div class="transport-grid">
+
+
+                <!-- TRAIN -->
+
+                <div class="transport-card">
+
+                    <div class="transport-icon">
+                        🚆
+                    </div>
+
+                    <h2>Train</h2>
+
+                    <p>
+                        Check train information, live running status
+                        and book railway tickets online.
+                    </p>
+
+                    <div class="transport-links">
+
+                        <a href="https://www.irctc.co.in/" target="_blank" class="service-btn">
+                            IRCTC →
+                        </a>
+
+                        <a href="https://support.google.com/whereismytrain/" target="_blank" class="service-btn">
+                            Where Is My Train →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUS -->
+
+                <div class="transport-card">
+
+                    <div class="transport-icon">
+                        🚌
+                    </div>
+
+                    <h2>Bus</h2>
+
+                    <p>
+                        Search bus routes, check timings,
+                        compare options and book bus tickets online.
+                    </p>
+
+                    <div class="transport-links">
+
+                        <a href="https://www.redbus.in/" target="_blank" class="service-btn">
+                            redBus →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FLIGHT -->
+
+                <div class="transport-card">
+
+                    <div class="transport-icon">
+                        ✈️
+                    </div>
+
+                    <h2>Flight</h2>
+
+                    <p>
+                        Search flights, compare fares and
+                        book your flight online.
+                    </p>
+
+                    <div class="transport-links">
+
+                        <a href="https://www.makemytrip.com/" target="_blank" class="service-btn">
+                            MakeMyTrip →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CAB -->
+
+                <div class="transport-card">
+
+                    <div class="transport-icon">
+                        🚕
+                    </div>
+
+                    <h2>Cab</h2>
+
+                    <p>
+                        Book a cab for local travel,
+                        airport transfers and outstation journeys.
+                    </p>
+
+                    <div class="transport-links">
+
+                        <a href="https://www.uber.com/in/en/" target="_blank" class="service-btn">
+                            Uber →
+                        </a>
+
+                        <a href="https://www.olacabs.com/" target="_blank" class="service-btn">
+                            Ola →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div style="text-align:center;">
+
+                <a href="index.html" class="back-btn">
+                    ← Back to TravelGrid
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

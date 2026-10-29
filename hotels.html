@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        TravelGrid - Hotels
+    </title>
+
+
+    <!-- HOTEL CSS -->
+
+    <link rel="stylesheet" href="css/hotels.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         NAVBAR
+         ================================================== -->
+
+    <nav class="navbar">
+
+
+        <div class="logo">
+
+            Travel<span>Grid</span>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="travel.html">
+                Travel
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="hotels.html" class="active">
+
+                Hotels
+
+            </a>
+
+            <a href="history.html">
+                history
+            </a>
+
+            <a href="booking.html">
+                My Bookings
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==================================================
+         HERO
+         ================================================== -->
+
+    <section class="hotel-hero">
+
+
+        <div class="hero-content">
+
+
+            <h1>
+                Find Your Perfect Stay
+            </h1>
+
+
+            <p>
+
+                Explore hotels near popular tourist
+                destinations and book your stay easily
+                with TravelGrid.
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         SEARCH SECTION
+         ================================================== -->
+
+    <section class="search-section">
+
+
+        <div class="search-box">
+
+
+            <!-- CITY -->
+
+            <select id="cityFilter">
+
+                <option value="all">
+
+                    All Cities
+
+                </option>
+
+            </select>
+
+
+            <!-- SEARCH -->
+
+            <button type="button" id="searchHotelBtn" class="search-hotel-btn">
+
+                🔍 Search Hotels
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         HOTELS
+         ================================================== -->
+
+    <section class="hotels-section">
+
+
+        <div class="section-title">
+
+
+            <h2 id="resultTitle">
+
+                Search Hotels
+
+            </h2>
+
+
+            <p id="resultSubtitle">
+
+                Select city and tourist place,
+                then click Search Hotels.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- HOTEL CARDS -->
+
+        <div id="hotelList" class="hotel-grid">
+
+        </div>
+
+
+    </section>
+
+    <!-- ==================================================
+         BOOKING MODAL
+         ================================================== -->
+
+    <div id="bookingModal" class="modal">
+
+
+        <div class="modal-box">
+
+
+            <!-- CLOSE -->
+
+            <button type="button" class="close-btn" onclick="closeBookingForm()">
+
+                ×
+
+            </button>
+
+
+            <!-- FORM -->
+
+            <form id="bookingForm" class="booking-form" onsubmit="confirmHotelBooking(event)">
+
+
+                <!-- HOTEL -->
+
+                <div class="form-group full">
+
+
+                    <label>
+
+                        Hotel Name
+
+                    </label>
+
+
+                    <input type="text" id="bookingHotelName" readonly>
+
+
+                </div>
+
+
+
+                <!-- CITY -->
+
+                <div class="form-group">
+
+
+                    <label>
+
+                        City
+
+                    </label>
+
+
+                    <input type="text" id="bookingCity" readonly>
+
+
+                </div>
+
+
+
+                <!-- PLACE -->
+
+                <div class="form-group">
+
+
+                    <label>
+
+                        Tourist Place
+
+                    </label>
+
+
+                    <input type="text" id="bookingPlace" readonly>
+
+
+                </div>
+
+
+
+                <!-- PRICE -->
+
+                <div class="form-group full">
+
+
+                    <label>
+
+                        Room Price
+
+                    </label>
+
+
+                    <input type="text" id="bookingPrice" readonly>
+
+
+                </div>
+
+
+
+                <!-- GUEST NAME -->
+
+                <div class="form-group">
+
+
+                    <label>
+
+                        Guest Name *
+
+                    </label>
+
+
+                    <input type="text" id="guestName" placeholder="Enter guest name" required>
+
+
+                </div>
+
+
+
+                <!-- MOBILE -->
+
+                <div class="form-group">
+
+
+                    <label>
+
+                        Mobile Number *
+
+                    </label>
+
+
+                    <input type="tel" id="guestMobile" placeholder="10-digit mobile number" maxlength="10" required>
+
+
+                </div>
+
+
+
+                <!-- CHECK IN -->
+
+                <div class="form-group">
+
+
+                    <label>
+
+                        Check-in *
+
+                    </label>
+
+
+                    <input type="date" id="checkIn" required>
+
+
+                </div>
+
+
+
+                <!-- CHECK OUT -->
+
+                <div class="form-group">
+
+
+                    <label>
+
+                        Check-out *
+
+                    </label>
+
+
+                    <input type="date" id="checkOut" required>
+
+
+                </div>
+
+
+
+                <!-- GUESTS -->
+
+                <div class="form-group">
+
+
+                    <label>
+
+                        Guests
+
+                    </label>
+
+
+                    <select id="guestCount">
+
+
+                        <option value="1">
+
+                            1 Guest
+
+                        </option>
+
+
+                        <option value="2" selected>
+
+                            2 Guests
+
+                        </option>
+
+
+                        <option value="3">
+
+                            3 Guests
+
+                        </option>
+
+
+                        <option value="4">
+
+                            4 Guests
+
+                        </option>
+
+
+                        <option value="5">
+
+                            5 Guests
+
+                        </option>
+
+
+                        <option value="6">
+
+                            6 Guests
+
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- ROOMS -->
+
+                <div class="form-group">
+
+
+                    <label>
+
+                        Rooms
+
+                    </label>
+
+
+                    <select id="roomCount">
+
+
+                        <option value="1" selected>
+
+                            1 Room
+
+                        </option>
+
+
+                        <option value="2">
+
+                            2 Rooms
+
+                        </option>
+
+
+                        <option value="3">
+
+                            3 Rooms
+
+                        </option>
+
+
+                        <option value="4">
+
+                            4 Rooms
+
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- CONFIRM -->
+
+                <button type="submit" class="confirm-btn">
+
+                    Confirm Hotel Booking
+
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+     FINAL ESTIMATE + PAYMENT
+     ===================================================== -->
+
+    <section id="finalTripSummary" class="final-trip-summary">
+
+        <div class="final-summary-container">
+
+            <!-- TITLE -->
+            <div class="final-summary-header">
+                <div class="summary-icon">💰</div>
+
+                <div>
+                    <h2>Trip Estimate</h2>
+                    <p>Your complete trip cost is calculated automatically.</p>
+                </div>
+            </div>
+
+
+            <!-- ESTIMATE -->
+            <div class="estimate-card">
+
+                <div class="estimate-row">
+                    <span>🚗 Travel Booking</span>
+                    <strong id="finalTravelAmount">₹0</strong>
+                </div>
+
+                <div class="estimate-row">
+                    <span>🏨 Hotel Booking</span>
+                    <strong id="finalHotelAmount">₹0</strong>
+                </div>
+
+                <div class="estimate-row">
+                    <span>🛕 Darshan Booking</span>
+                    <strong id="finalDarshanAmount">₹0</strong>
+                </div>
+
+                <div class="estimate-line"></div>
+
+                <div class="estimate-total">
+                    <span>💰 Total Estimated Cost</span>
+                    <strong id="finalTripTotal">₹0</strong>
+                </div>
+
+            </div>
+
+
+            <!-- ===============================
+             FINAL PAYMENT
+             =============================== -->
+
+            <div id="newPaymentBox" class="final-payment-box">
+
+                <div class="payment-heading">
+
+                    <div class="payment-icon">💳</div>
+
+                    <div>
+                        <h2>Final Payment</h2>
+                        <p>Select your preferred payment method.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="payment-amount">
+
+                    <span>Amount to Pay</span>
+
+                    <strong id="finalPayAmount">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <!-- PAYMENT BUTTONS -->
+
+                <div class="payment-buttons">
+
+                    <button type="button" onclick="newPayment('UPI')">
+                        📱 UPI
+                    </button>
+
+                    <button type="button" onclick="newPayment('CARD')">
+                        💳 Card
+                    </button>
+
+                    <button type="button" onclick="newPayment('ONLINE')">
+                        🏦 Online
+                    </button>
+
+                    <button type="button" onclick="newPayment('CASH')">
+                        💵 Cash
+                    </button>
+
+                </div>
+
+
+                <!-- PAYMENT FORM APPEARS HERE -->
+
+                <div id="newPaymentDetails" class="payment-details"></div>
+
+            </div>
+
+
+            <!-- ===============================
+             FINAL BILL
+             =============================== -->
+
+            <div id="newPaymentBill" class="final-payment-bill"></div>
+
+        </div>
+
+    </section>
+    <!-- ==================================================
+         FOOTER
+         ================================================== -->
+
+    <footer class="footer">
+
+
+        <p>
+
+            © 2026 TravelGrid -
+            Smart Travel Planning &
+            Tourism Platform
+
+        </p>
+
+
+    </footer>
+
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+         ================================================== -->
+
+    <script src="js/hotels.js"></script>
+    <!-- FINAL TRIP ESTIMATE -->
+    <section id="finalTripSummary" class="final-trip-summary" style="display:none;">
+
+        <div class="container">
+
+            <h2>💰 Final Trip Summary</h2>
+
+            <p>
+                Your complete trip amount is calculated automatically.
+            </p>
+
+            <div class="final-summary-card">
+
+                <div class="summary-row">
+                    <span>🚗 Travel Booking</span>
+                    <strong id="finalTravelAmount">₹0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>🏨 Hotel Booking</span>
+                    <strong id="finalHotelAmount">₹0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>🛕 Darshan Booking</span>
+                    <strong id="finalDarshanAmount">₹0</strong>
+                </div>
+
+                <hr>
+
+                <div class="summary-total">
+                    <span>💰 Total Amount</span>
+                    <strong id="finalTripTotal">₹0</strong>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div id="finalPaymentSuccess" style="display:none;">
+        </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>
+
+
+<div id="newPaymentBill"></div>
+
+<script>
+    (function () {
+
+        window.newPayment = function (method) {
+
+            const box = document.getElementById("newPaymentDetails");
+
+            if (!box) return;
+
+            let html = "";
+
+            if (method === "UPI") {
+
+                html = `
+                <div class="payment-input-box">
+                    <h4>📱 UPI Payment</h4>
+
+                    <input
+                        type="text"
+                        id="newUpiId"
+                        placeholder="Enter UPI ID"
+                    >
+
+                    <button
+                        type="button"
+                        onclick="newConfirmPayment('UPI')"
+                    >
+                        Pay & Confirm
+                    </button>
+                </div>
+            `;
+
+            }
+
+            else if (method === "CARD") {
+
+                html = `
+                <div class="payment-input-box">
+                    <h4>💳 Card Payment</h4>
+
+                    <input
+                        type="text"
+                        id="newCardNumber"
+                        maxlength="16"
+                        placeholder="Card Number"
+                    >
+
+                    <input
+                        type="text"
+                        id="newCardExpiry"
+                        placeholder="MM/YY"
+                    >
+
+                    <input
+                        type="password"
+                        id="newCardCVV"
+                        maxlength="3"
+                        placeholder="CVV"
+                    >
+
+                    <button
+                        type="button"
+                        onclick="newConfirmPayment('CARD')"
+                    >
+                        Pay & Confirm
+                    </button>
+                </div>
+            `;
+
+            }
+
+            else if (method === "ONLINE") {
+
+                html = `
+                <div class="payment-input-box">
+                    <h4>🏦 Online Banking</h4>
+
+                    <select id="newBank">
+                        <option value="">Select Bank</option>
+                        <option>SBI</option>
+                        <option>HDFC Bank</option>
+                        <option>ICICI Bank</option>
+                        <option>Axis Bank</option>
+                    </select>
+
+                    <input
+                        type="text"
+                        id="newCustomerId"
+                        placeholder="Customer ID"
+                    >
+
+                    <button
+                        type="button"
+                        onclick="newConfirmPayment('ONLINE')"
+                    >
+                        Pay & Confirm
+                    </button>
+                </div>
+            `;
+
+            }
+
+            else if (method === "CASH") {
+
+                html = `
+                <div class="payment-input-box">
+                    <h4>💵 Cash Payment</h4>
+
+                    <p>
+                        You can pay the amount at the hotel/travel counter.
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="newConfirmPayment('CASH')"
+                    >
+                        Confirm Cash Payment
+                    </button>
+                </div>
+            `;
+            }
+
+            box.innerHTML = html;
+        };
+
+
+        window.newConfirmPayment = function (method) {
+
+            let valid = true;
+
+            if (method === "UPI") {
+
+                const upi = document.getElementById("newUpiId");
+
+                if (!upi || upi.value.trim() === "") {
+                    alert("Please enter UPI ID");
+                    return;
+                }
+            }
+
+
+            if (method === "CARD") {
+
+                const card = document.getElementById("newCardNumber");
+                const expiry = document.getElementById("newCardExpiry");
+                const cvv = document.getElementById("newCardCVV");
+
+                if (
+                    !card.value.trim() ||
+                    !expiry.value.trim() ||
+                    !cvv.value.trim()
+                ) {
+                    alert("Please enter all card details");
+                    return;
+                }
+            }
+
+
+            if (method === "ONLINE") {
+
+                const bank = document.getElementById("newBank");
+                const customer = document.getElementById("newCustomerId");
+
+                if (
+                    !bank.value ||
+                    !customer.value.trim()
+                ) {
+                    alert("Please enter bank and Customer ID");
+                    return;
+                }
+            }
+
+
+            let travelAmount =
+                Number(localStorage.getItem("travelBookingAmount")) || 0;
+
+            let hotelAmount =
+                Number(localStorage.getItem("hotelTotalAmount")) || 0;
+
+            let darshanAmount =
+                Number(localStorage.getItem("darshanBookingAmount")) || 0;
+
+            const total =
+                travelAmount +
+                hotelAmount +
+                darshanAmount;
+
+
+            const bookingId =
+                "TG" + Date.now();
+
+
+            const finalBooking = {
+
+                bookingId: bookingId,
+
+                travelAmount: travelAmount,
+
+                hotelAmount: hotelAmount,
+
+                darshanAmount: darshanAmount,
+
+                totalAmount: total,
+
+                paymentMethod: method,
+
+                paymentStatus: "Paid",
+
+                bookingDate: new Date().toLocaleString()
+
+            };
+
+
+            localStorage.setItem(
+                "travelGridFinalBooking",
+                JSON.stringify(finalBooking)
+            );
+
+            localStorage.setItem(
+                "travelGridTotalAmount",
+                String(total)
+            );
+
+
+            document.getElementById("newPaymentBox").style.display = "none";
+
+
+            document.getElementById("newPaymentBill").innerHTML = `
+
+            <div class="final-success-box">
+
+                <h2>✅ Payment Successful</h2>
+
+                <p>Your booking has been confirmed successfully.</p>
+
+                <hr>
+
+                <h3>🧾 Final Bill</h3>
+
+                <p>
+                    <strong>Booking ID:</strong>
+                    ${bookingId}
+                </p>
+
+                <p>
+                    <strong>Travel Booking:</strong>
+                    ₹${travelAmount}
+                </p>
+
+                <p>
+                    <strong>Hotel Booking:</strong>
+                    ₹${hotelAmount}
+                </p>
+
+                <p>
+                    <strong>Darshan Booking:</strong>
+                    ₹${darshanAmount}
+                </p>
+
+                <hr>
+
+                <h2>
+                    Total Amount:
+                    ₹${total}
+                </h2>
+
+                <p>
+                    <strong>Payment Method:</strong>
+                    ${method}
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    Payment Successful
+                </p>
+
+                <p>
+                    <strong>Date:</strong>
+                    ${finalBooking.bookingDate}
+                </p>
+
+                <button
+                    type="button"
+                    onclick="newFinishBooking()"
+                >
+                    DONE
+                </button>
+
+            </div>
+        `;
+
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth"
+            });
+        };
+
+
+        window.newFinishBooking = function () {
+
+            alert("🎉 Trip Booking Completed Successfully!");
+
+            window.location.href = "travel.html";
+
+        };
+
+    })();
+</script>

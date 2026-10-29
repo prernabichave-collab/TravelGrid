@@ -1,0 +1,94 @@
+const express = require("express");
+
+const router =
+    express.Router();
+
+const Destination =
+    require("../models/Destination");
+
+
+/* GET ALL DESTINATIONS */
+
+router.get("/", async (req, res) => {
+
+    try {
+
+        const destinations =
+            await Destination
+                .find()
+                .sort({
+                    name: 1
+                });
+
+
+        res.json(
+            destinations
+        );
+
+    }
+    catch (error) {
+
+        console.error(
+            "Destination fetch error:",
+            error
+        );
+
+        res.status(500).json({
+
+            message:
+                "Failed to fetch destinations"
+
+        });
+
+    }
+
+});
+
+
+/* GET ONE DESTINATION */
+
+router.get("/:id", async (req, res) => {
+
+    try {
+
+        const destination =
+            await Destination
+                .findById(
+                    req.params.id
+                );
+
+
+        if (!destination) {
+
+            return res.status(404).json({
+
+                message:
+                    "Destination not found"
+
+            });
+
+        }
+
+
+        res.json(
+            destination
+        );
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+
+            message:
+                "Failed to fetch destination"
+
+        });
+
+    }
+
+});
+
+
+module.exports = router;
